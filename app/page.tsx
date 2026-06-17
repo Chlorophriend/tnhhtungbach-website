@@ -17,9 +17,6 @@ export default function Home() {
   const [selectedLayout, setSelectedLayout] = useState<'A' | 'B'>('A');
 
   // 2. Financial Calculator State
-  const [apartmentPrice, setApartmentPrice] = useState<number>(854000000); // 61m2 * 14m/m2
-  const [loanPercent, setLoanPercent] = useState<number>(70);
-  const [loanYears, setLoanYears] = useState<number>(20);
 
   // 3. Eligibility Quiz State
   const [quizStep, setQuizStep] = useState<number>(0);
@@ -40,16 +37,6 @@ export default function Home() {
     loading?: boolean;
   }>({});
 
-  // Financial calculations
-  const loanAmount = (apartmentPrice * loanPercent) / 100;
-  const interestRateYear = 5.0; // 5% yearly policy interest rate for social housing
-  const interestRateMonth = (interestRateYear / 100) / 12;
-  const totalMonths = loanYears * 12;
-  // Principal payment monthly
-  const monthlyPrincipal = loanAmount / totalMonths;
-  // First month interest
-  const firstMonthInterest = loanAmount * interestRateMonth;
-  const firstMonthTotal = monthlyPrincipal + firstMonthInterest;
 
   // Eligibility Quiz questions
   const quizQuestions = [
@@ -164,11 +151,6 @@ export default function Home() {
 
   const handleApartmentSelect = (layout: 'A' | 'B') => {
     setSelectedLayout(layout);
-    if (layout === 'A') {
-      setApartmentPrice(854000000); // 61m2 * 14m/m2
-    } else {
-      setApartmentPrice(1000000000); // 71.3m2 * 14m/m2
-    }
   };
 
   return (
@@ -229,6 +211,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
+        {/* Smooth Bottom Gradient Fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-slate-900 to-transparent z-10 pointer-events-none"></div>
       </section>
 
       {/* OVERVIEW SECTION */}
@@ -289,8 +274,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Gradient border at top */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 via-accent/40 via-primary/30 to-transparent relative z-10" />
+
       {/* HIGHLIGHTS / FACILITIES SECTION */}
-      <section id="highlights" className="py-20 bg-slate-50 dark:bg-emerald-950/10 scroll-mt-16 border-y border-slate-200/50 dark:border-emerald-900/30">
+      <section id="highlights" className="py-20 bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-emerald-950/10 dark:to-slate-900 scroll-mt-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             
@@ -373,6 +361,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Gradient border at bottom */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 via-accent/40 via-primary/30 to-transparent relative z-10" />
 
       {/* APARTMENT SELECTOR SECTION */}
       <section id="layouts" className="py-20 bg-white dark:bg-slate-900 scroll-mt-16">
@@ -525,116 +516,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PREMIUM FEATURE 1: LOAN / FINANCIAL CALCULATOR */}
-      <section className="py-20 bg-slate-50 dark:bg-emerald-950/10 border-y border-slate-200/50 dark:border-emerald-900/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 space-y-4">
-            <span className="text-xs font-bold text-accent uppercase tracking-widest block">Tính Toán Tài Chính</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
-              Bảng Ước Tính Trả Góp Hàng Tháng
-            </h2>
-            <div className="w-16 h-1 bg-primary mx-auto rounded"></div>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Công cụ hỗ trợ bạn ước lượng mức chi trả gốc và lãi suất hàng tháng khi mua nhà xã hội Tùng Bách theo chính sách nhà nước ưu đãi (lãi suất ổn định 5%/năm).
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-emerald-950/20 p-8 rounded-3xl shadow-md border border-slate-200/60 dark:border-emerald-800/40 space-y-8">
-            {/* Input sliders */}
-            <div className="space-y-6">
-              {/* Option toggle */}
-              <div className="flex gap-4">
-                <button 
-                  onClick={() => setApartmentPrice(selectedLayout === 'A' ? 854000000 : 1000000000)}
-                  className="px-4 py-2 rounded-lg border border-slate-200 dark:border-emerald-900 text-xs font-bold bg-slate-50 dark:bg-emerald-950 text-slate-600 dark:text-slate-300 hover:bg-slate-100"
-                >
-                  Đặt lại theo căn hộ mẫu đang xem
-                </button>
-              </div>
-
-              {/* Slider 1: Apartment value */}
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-slate-600 dark:text-slate-300">Giá trị căn hộ:</span>
-                  <span className="font-bold text-primary dark:text-accent">{(apartmentPrice / 1000000).toFixed(0)} Triệu VNĐ</span>
-                </div>
-                <input 
-                  type="range" 
-                  min={600000000} 
-                  max={1500000000} 
-                  step={10000000} 
-                  value={apartmentPrice}
-                  onChange={(e) => setApartmentPrice(Number(e.target.value))}
-                  className="w-full accent-primary cursor-pointer h-2 bg-slate-100 dark:bg-emerald-950 rounded-lg"
-                />
-              </div>
-
-              {/* Slider 2: Loan percentage */}
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-slate-600 dark:text-slate-300">Tỷ lệ vay vốn:</span>
-                  <span className="font-bold text-primary dark:text-accent">{loanPercent}% (~{(loanAmount / 1000000).toFixed(0)} Triệu)</span>
-                </div>
-                <input 
-                  type="range" 
-                  min={20} 
-                  max={80} 
-                  step={5} 
-                  value={loanPercent}
-                  onChange={(e) => setLoanPercent(Number(e.target.value))}
-                  className="w-full accent-primary cursor-pointer h-2 bg-slate-100 dark:bg-emerald-950 rounded-lg"
-                />
-                <div className="flex justify-between text-2xs text-slate-400">
-                  <span>Vốn tự có 80% (Vay tối thiểu 20%)</span>
-                  <span>Vốn tự có 20% (Vay tối đa 80%)</span>
-                </div>
-              </div>
-
-              {/* Slider 3: Loan period in years */}
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-slate-600 dark:text-slate-300">Thời gian vay:</span>
-                  <span className="font-bold text-primary dark:text-accent">{loanYears} Năm ({totalMonths} Tháng)</span>
-                </div>
-                <input 
-                  type="range" 
-                  min={5} 
-                  max={25} 
-                  step={1} 
-                  value={loanYears}
-                  onChange={(e) => setLoanYears(Number(e.target.value))}
-                  className="w-full accent-primary cursor-pointer h-2 bg-slate-100 dark:bg-emerald-950 rounded-lg"
-                />
-              </div>
-            </div>
-
-            {/* Calculations breakdown output */}
-            <div className="bg-primary/5 dark:bg-emerald-950/40 border border-primary/20 dark:border-emerald-800 p-6 rounded-2xl grid md:grid-cols-3 gap-6 text-center">
-              <div>
-                <span className="block text-xs text-slate-500 dark:text-slate-400 uppercase">Tiền tự có chuẩn bị</span>
-                <span className="text-xl font-bold text-slate-900 dark:text-white">
-                  {((apartmentPrice - loanAmount) / 1000000).toFixed(0)} Triệu
-                </span>
-                <span className="block text-2xs text-slate-400 mt-1">({(100 - loanPercent)}% giá trị nhà)</span>
-              </div>
-              <div>
-                <span className="block text-xs text-slate-500 dark:text-slate-400 uppercase">Trả gốc hàng tháng</span>
-                <span className="text-xl font-bold text-slate-900 dark:text-white">
-                  {(monthlyPrincipal / 1000000).toFixed(2)} Triệu
-                </span>
-                <span className="block text-2xs text-slate-400 mt-1">(Trả đều theo tháng)</span>
-              </div>
-              <div className="border-t md:border-t-0 md:border-l border-slate-200 dark:border-emerald-800 pt-4 md:pt-0">
-                <span className="block text-xs text-slate-500 dark:text-slate-400 uppercase text-accent font-semibold">Ước tính tháng đầu tiên</span>
-                <span className="text-2xl font-extrabold text-accent">
-                  {(firstMonthTotal / 1000000).toFixed(2)} Triệu
-                </span>
-                <span className="block text-2xs text-slate-400 mt-1">(Gồm Gốc + Lãi suất 5%/năm)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Section Divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/20 via-accent/30 via-primary/20 to-transparent relative z-10" />
 
       {/* PREMIUM FEATURE 2: ELIGIBILITY QUIZ */}
       <section className="py-20 bg-white dark:bg-slate-900">
@@ -722,8 +605,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Gradient border at top */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 via-accent/40 via-primary/30 to-transparent relative z-10" />
+
       {/* PREMIUM FEATURE 3: TIMELINE */}
-      <section id="progress" className="py-20 bg-slate-50 dark:bg-emerald-950/10 scroll-mt-16 border-t border-slate-200/50 dark:border-emerald-900/30">
+      <section id="progress" className="py-20 bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-emerald-950/10 dark:to-slate-900 scroll-mt-16 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-xs font-bold text-accent uppercase tracking-widest">Tiến Độ Dự Án</h2>
@@ -798,6 +684,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Gradient border at bottom */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 via-accent/40 via-primary/30 to-transparent relative z-10" />
 
       {/* REGISTRATION & CONTACT FORM SECTION */}
       <section id="register" className="py-20 bg-white dark:bg-slate-900 scroll-mt-16">
@@ -915,6 +804,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Gradient border at bottom */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 via-accent/40 via-primary/30 to-transparent relative z-10" />
 
     </div>
   );
