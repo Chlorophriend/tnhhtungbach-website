@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #0f172a; /* Slate 900 */
@@ -26,13 +28,11 @@
   --font-sans: var(--font-be-vietnam-pro), system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #022c22; /* Very deep forest green/dark slate */
-    --foreground: #f8fafc;
-    --primary-light: #022c22;
-    --border-color: #064e3b;
-  }
+.dark {
+  --background: #022c22; /* Very deep forest green/dark slate */
+  --foreground: #f8fafc;
+  --primary-light: #022c22;
+  --border-color: #064e3b;
 }
 
 body {

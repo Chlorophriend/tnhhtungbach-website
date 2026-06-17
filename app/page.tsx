@@ -13,9 +13,6 @@ interface FormData {
 }
 
 export default function Home() {
-  // 1. Apartment Selector State
-  const [selectedLayout, setSelectedLayout] = useState<'A' | 'B'>('A');
-
   // 2. Financial Calculator State
 
   // 3. Eligibility Quiz State
@@ -149,9 +146,7 @@ export default function Home() {
     }
   };
 
-  const handleApartmentSelect = (layout: 'A' | 'B') => {
-    setSelectedLayout(layout);
-  };
+
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-slate-50 dark:bg-emerald-950/20 text-slate-800 dark:text-slate-100">
@@ -362,159 +357,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gradient border at bottom */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 via-accent/40 via-primary/30 to-transparent relative z-10" />
 
-      {/* APARTMENT SELECTOR SECTION */}
-      <section id="layouts" className="py-20 bg-white dark:bg-slate-900 scroll-mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-            <h2 className="text-xs font-bold text-accent uppercase tracking-widest">Mặt Bằng Căn Hộ</h2>
-            <p className="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">
-              Không Gian Sống Tinh Tế & Khoa Học
-            </p>
-            <div className="w-16 h-1 bg-primary mx-auto rounded"></div>
-            <p className="text-slate-600 dark:text-slate-300 font-light">
-              Mỗi căn hộ tại NOXH Tùng Bách đều được thiết kế thông minh, tối ưu hóa diện tích sử dụng, đón trọn ánh sáng tự nhiên và luồng gió mát đối lưu.
-            </p>
-          </div>
-
-          {/* Tab buttons */}
-          <div className="flex justify-center gap-4 mb-12">
-            <button
-              onClick={() => handleApartmentSelect('A')}
-              className={`px-6 py-3 rounded-full font-bold text-sm shadow transition-all ${
-                selectedLayout === 'A'
-                  ? 'bg-primary text-white scale-105'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
-              }`}
-            >
-              Căn Hộ Mẫu A (61.0 m²)
-            </button>
-            <button
-              onClick={() => handleApartmentSelect('B')}
-              className={`px-6 py-3 rounded-full font-bold text-sm shadow transition-all ${
-                selectedLayout === 'B'
-                  ? 'bg-primary text-white scale-105'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
-              }`}
-            >
-              Căn Hộ Mẫu B (71.3 m²)
-            </button>
-          </div>
-
-          {/* Interactive display */}
-          <div className="grid lg:grid-cols-12 gap-12 items-center bg-slate-50 dark:bg-emerald-950/20 p-8 rounded-3xl border border-slate-100 dark:border-emerald-900">
-            {/* Visual SVG blueprint */}
-            <div className="lg:col-span-7 bg-white dark:bg-slate-950 p-6 rounded-2xl border border-slate-200/50 dark:border-emerald-900 shadow-inner flex justify-center">
-              {selectedLayout === 'A' ? (
-                // SVG floor plan sketch for 61m2
-                <svg className="w-full max-w-md h-72" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="10" y="10" width="380" height="230" rx="4" stroke="#064e3b" strokeWidth="3" fill="#ecfdf5" fillOpacity="0.3"/>
-                  {/* Living room */}
-                  <rect x="10" y="10" width="160" height="150" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="35" y="90" fill="#064e3b" fontSize="14" fontWeight="bold">PHÒNG KHÁCH</text>
-                  <text x="35" y="110" fill="#64748b" fontSize="10">Kèm khu Bếp + Ăn</text>
-                  {/* Master Bedroom */}
-                  <rect x="170" y="10" width="110" height="130" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="185" y="70" fill="#064e3b" fontSize="11" fontWeight="bold">PHÒNG NGỦ 1</text>
-                  {/* Small Bedroom */}
-                  <rect x="280" y="10" width="110" height="130" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="295" y="70" fill="#064e3b" fontSize="11" fontWeight="bold">PHÒNG NGỦ 2</text>
-                  {/* Bathroom */}
-                  <rect x="170" y="140" width="100" height="100" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="200" y="195" fill="#064e3b" fontSize="12" fontWeight="bold">WC</text>
-                  {/* Balcony */}
-                  <rect x="10" y="160" width="160" height="80" stroke="#064e3b" strokeWidth="2" fill="#f8fafc"/>
-                  <text x="70" y="205" fill="#064e3b" fontSize="12" fontWeight="bold">LÔ GIA</text>
-                  {/* Entry arrow */}
-                  <path d="M 285 240 L 285 200" stroke="#d97706" strokeWidth="3" markerEnd="url(#arrow)"/>
-                  <text x="295" y="225" fill="#d97706" fontSize="10" fontWeight="bold">LỐI VÀO</text>
-                </svg>
-              ) : (
-                // SVG floor plan sketch for 71.3m2
-                <svg className="w-full max-w-md h-72" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="10" y="10" width="380" height="230" rx="4" stroke="#064e3b" strokeWidth="3" fill="#ecfdf5" fillOpacity="0.3"/>
-                  {/* Living room */}
-                  <rect x="10" y="10" width="180" height="130" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="45" y="70" fill="#064e3b" fontSize="14" fontWeight="bold">PHÒNG KHÁCH</text>
-                  <text x="45" y="90" fill="#64748b" fontSize="10">Rộng rãi thoáng đãng</text>
-                  {/* Master Bedroom */}
-                  <rect x="190" y="10" width="100" height="150" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="200" y="80" fill="#064e3b" fontSize="11" fontWeight="bold">PN MASTER</text>
-                  <rect x="190" y="120" width="50" height="40" stroke="#064e3b" strokeWidth="1" fill="#f8fafc"/>
-                  <text x="205" y="145" fill="#064e3b" fontSize="9" fontWeight="bold">WC 1</text>
-                  {/* Small Bedroom */}
-                  <rect x="290" y="10" width="100" height="150" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="310" y="80" fill="#064e3b" fontSize="11" fontWeight="bold">PHÒNG NGỦ 2</text>
-                  {/* Shared Bathroom */}
-                  <rect x="290" y="160" width="100" height="80" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="325" y="205" fill="#064e3b" fontSize="12" fontWeight="bold">WC 2</text>
-                  {/* Kitchen */}
-                  <rect x="10" y="140" width="110" height="100" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="45" y="195" fill="#064e3b" fontSize="12" fontWeight="bold">BẾP</text>
-                  {/* Balcony 1 */}
-                  <rect x="120" y="140" width="70" height="100" stroke="#064e3b" strokeWidth="2" fill="#f8fafc"/>
-                  <text x="135" y="195" fill="#064e3b" fontSize="10" fontWeight="bold">LÔ GIA 1</text>
-                  {/* Balcony 2 */}
-                  <rect x="190" y="160" width="100" height="80" stroke="#064e3b" strokeWidth="2" fill="#f8fafc"/>
-                  <text x="210" y="205" fill="#064e3b" fontSize="10" fontWeight="bold">LÔ GIA 2</text>
-                </svg>
-              )}
-            </div>
-
-            {/* Layout specifications */}
-            <div className="lg:col-span-5 space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                  {selectedLayout === 'A' ? 'Mẫu A: Thiết kế tối giản, công năng' : 'Mẫu B: Tổ ấm lý tưởng cho gia đình'}
-                </h3>
-                <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">
-                  {selectedLayout === 'A' 
-                    ? 'Phù hợp cho các cặp vợ chồng trẻ hoặc người độc thân làm việc tại các khu công nghiệp.' 
-                    : 'Không gian mở rộng rãi với 2 lô gia thông thoáng, đáp ứng trọn vẹn nhu cầu sinh hoạt gia đình 2-3 thế hệ.'}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 border-y border-slate-200 dark:border-emerald-800 py-6">
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Diện tích tim tường</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    {selectedLayout === 'A' ? '61.0 m²' : '71.3 m²'}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Thiết kế căn hộ</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    2 PN | {selectedLayout === 'A' ? '1 WC' : '2 WC'}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Lô gia (Ban công)</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    {selectedLayout === 'A' ? '1 Lô gia' : '2 Lô gia'}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Giá bán trung bình</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    {selectedLayout === 'A' ? '~854 Triệu VNĐ' : '~1.0 Tỷ VNĐ'}
-                  </span>
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <a
-                  href="#register"
-                  className="inline-block px-6 py-3 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow transition-all hover:scale-105"
-                >
-                  Đăng ký tham quan căn hộ mẫu
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Section Divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/20 via-accent/30 via-primary/20 to-transparent relative z-10" />

@@ -68,11 +68,6 @@ export default function Footer() {
                   Thông tin liên hệ
                 </Link>
               </li>
-              <li>
-                <Link href="/admin/compliance" className="hover:text-primary-light transition-colors">
-                  Thủ tục chuyển nhượng tên miền
-                </Link>
-              </li>
             </ul>
           </div>
 

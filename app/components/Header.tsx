@@ -7,6 +7,7 @@ import Image from 'next/image';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,8 +18,28 @@ export default function Header() {
       }
     };
     window.addEventListener('scroll', handleScroll);
+
+    // Initial theme check
+    if (typeof window !== 'undefined') {
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(isDark ? 'dark' : 'light');
+    }
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      setTheme('light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setTheme('dark');
+    }
+  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -88,13 +109,12 @@ export default function Header() {
             >
               Tiện ích
             </a>
-            <a 
-              href="#layouts" 
-              onClick={(e) => handleNavClick(e, 'layouts')}
+            <Link 
+              href="/services" 
               className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
             >
-              Thiết kế căn hộ
-            </a>
+              Dịch vụ
+            </Link>
             <a 
               href="#progress" 
               onClick={(e) => handleNavClick(e, 'progress')}
@@ -103,21 +123,38 @@ export default function Header() {
               Tiến độ
             </a>
             <Link 
+              href="/about" 
+              className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
+            >
+              Giới thiệu
+            </Link>
+            <Link 
               href="/contact" 
               className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
             >
               Liên hệ
             </Link>
-            <Link 
-              href="/admin/compliance" 
-              className="text-xs text-slate-400 hover:text-primary dark:hover:text-accent transition-colors border border-dashed border-slate-300 dark:border-slate-700 px-2 py-1 rounded"
-            >
-              Pháp lý Domain
-            </Link>
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA & Theme Toggle */}
           <div className="hidden md:flex items-center gap-4">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/80 text-slate-700 dark:text-amber-400 transition-colors shadow-sm cursor-pointer border-0"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+
             <a 
               href="#register" 
               onClick={(e) => handleNavClick(e, 'register')}
@@ -127,8 +164,25 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden">
+          {/* Mobile Menu & Theme Toggle Trigger */}
+          <div className="flex md:hidden items-center gap-3">
+            {/* Theme Toggle Button for mobile header */}
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 rounded-full bg-slate-100 dark:bg-emerald-950/60 text-slate-700 dark:text-amber-400 transition-colors shadow-sm cursor-pointer border-0"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
@@ -168,13 +222,13 @@ export default function Header() {
           >
             Tiện ích
           </a>
-          <a
-            href="#layouts"
-            onClick={(e) => handleNavClick(e, 'layouts')}
+          <Link
+            href="/services"
+            onClick={() => setIsOpen(false)}
             className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
           >
-            Thiết kế căn hộ
-          </a>
+            Dịch vụ
+          </Link>
           <a
             href="#progress"
             onClick={(e) => handleNavClick(e, 'progress')}
@@ -183,18 +237,18 @@ export default function Header() {
             Tiến độ
           </a>
           <Link
+            href="/about"
+            onClick={() => setIsOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
+          >
+            Giới thiệu
+          </Link>
+          <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
             className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
           >
             Liên hệ
-          </Link>
-          <Link
-            href="/admin/compliance"
-            onClick={() => setIsOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
-          >
-            Hồ sơ & Pháp lý Domain
           </Link>
           <div className="pt-4 pb-2 px-3">
             <a
