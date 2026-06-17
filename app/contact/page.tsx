@@ -47,7 +47,7 @@ export default function ContactPage() {
               
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-white">Địa chỉ Email:</h3>
-                <p className="text-slate-500 dark:text-slate-400 mt-0.5">info@tungbachbds.com</p>
+                <p className="text-slate-500 dark:text-slate-400 mt-0.5">info@tungbachbds.vn</p>
               </div>
             </div>
             

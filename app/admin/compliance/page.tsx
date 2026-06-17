@@ -87,7 +87,7 @@ Em cảm ơn mọi người!`;
 4. Bản vẽ: Bản vẽ mặt bằng tầng điển hình và mặt bằng chi tiết của từng mẫu căn hộ (để đưa lên bộ chọn căn hộ trực quan).
 5. Giá bán & tiến độ: Khoảng giá bán/thuê dự kiến và tiến độ thanh toán của khách hàng.`;
 
-  const zaloTemplate3 = `Chào team pháp lý, website tungbachbds.com cần khai báo thông tin với Bộ Công Thương và đăng tải tính minh bạch pháp lý cho dự án NOXH. Nhờ mọi người hỗ trợ gửi:
+  const zaloTemplate3 = `Chào team pháp lý, website tungbachbds.vn cần khai báo thông tin với Bộ Công Thương và đăng tải tính minh bạch pháp lý cho dự án NOXH. Nhờ mọi người hỗ trợ gửi:
 1. Ảnh chụp/quét Giấy chứng nhận Đăng ký Doanh nghiệp (để kiểm tra chính xác MST, địa chỉ trụ sở đăng ký và người đại diện).
 2. Các văn bản pháp lý dự án có thể công khai (ví dụ: Quyết định phê duyệt dự án, Giấy phép xây dựng, hoặc văn bản của Sở Xây dựng chấp thuận đủ điều kiện bán/cho thuê nhà ở xã hội hình thành trong tương lai).
 3. Quy trình & biểu mẫu đăng ký mua nhà để khách hàng có thể tải về trực tiếp từ website.`;
@@ -122,7 +122,7 @@ Em cảm ơn mọi người!`;
               Thủ tục Chuyển quyền Tên miền iNet
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Chuyển tên miền <code className="bg-slate-100 dark:bg-emerald-900 px-1 py-0.5 rounded font-mono">tungbachbds.com</code> từ Sở hữu Cá nhân sang Sở hữu Doanh nghiệp (Công ty TNHH Tùng Bách).
+              Chuyển tên miền <code className="bg-slate-100 dark:bg-emerald-900 px-1 py-0.5 rounded font-mono">tungbachbds.vn</code> từ Sở hữu Cá nhân sang Sở hữu Doanh nghiệp (Công ty TNHH Tùng Bách).
             </p>
 
             <div className="space-y-3.5">
@@ -183,7 +183,7 @@ Em cảm ơn mọi người!`;
               Cấu hình DNS trên iNet trỏ về GitHub Pages
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Đăng nhập trang quản trị iNet, chọn quản lý tên miền <code className="font-mono">tungbachbds.com</code> và cấu hình các bản ghi sau:
+              Đăng nhập trang quản trị iNet, chọn quản lý tên miền <code className="font-mono">tungbachbds.vn</code> và cấu hình các bản ghi sau:
             </p>
 
             <div className="space-y-4">
@@ -262,7 +262,7 @@ Em cảm ơn mọi người!`;
                   className="mt-1 accent-primary rounded cursor-pointer"
                 />
                 <span className={`group-hover:text-primary ${checklist.moitSubmit ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-300'}`}>
-                  Khai báo hồ sơ website thương mại điện tử bán hàng. Điền tên miền <code className="font-mono text-xs">tungbachbds.com</code>, tải ảnh GPKD, gửi duyệt và chờ nhận Logo dấu đỏ của Bộ Công Thương.
+                  Khai báo hồ sơ website thương mại điện tử bán hàng. Điền tên miền <code className="font-mono text-xs">tungbachbds.vn</code>, tải ảnh GPKD, gửi duyệt và chờ nhận Logo dấu đỏ của Bộ Công Thương.
                 </span>
               </label>
             </div>

@@ -8,7 +8,7 @@ export default function TermsPage() {
       
       <div className="prose prose-slate dark:prose-invert max-w-none text-sm text-slate-600 dark:text-slate-300 space-y-6">
         <p>
-          Chào mừng quý khách đến với trang thông tin chính thức của dự án Nhà ở xã hội Tùng Bách (địa chỉ tên miền: <strong>tungbachbds.com</strong>), được vận hành bởi <strong>Công ty TNHH Tùng Bách</strong>. Xin vui lòng đọc kỹ các điều khoản dịch vụ này trước khi sử dụng hoặc đăng ký tư vấn trên website.
+          Chào mừng quý khách đến với trang thông tin chính thức của dự án Nhà ở xã hội Tùng Bách (địa chỉ tên miền: <strong>tungbachbds.vn</strong>), được vận hành bởi <strong>Công ty TNHH Tùng Bách</strong>. Xin vui lòng đọc kỹ các điều khoản dịch vụ này trước khi sử dụng hoặc đăng ký tư vấn trên website.
         </p>
 
         <section className="space-y-3">

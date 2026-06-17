@@ -42,7 +42,7 @@ Chào anh/chị bên vận hành dự án, em đang hoàn thiện trang giới t
 
 ### Mẫu 3: Yêu cầu về Hồ sơ Pháp lý (Phục vụ khai báo Bộ Công Thương)
 ```text
-Chào team pháp lý, website tungbachbds.com cần khai báo thông tin với Bộ Công Thương và đăng tải tính minh bạch pháp lý cho dự án NOXH. Nhờ mọi người hỗ trợ gửi:
+Chào team pháp lý, website tungbachbds.vn cần khai báo thông tin với Bộ Công Thương và đăng tải tính minh bạch pháp lý cho dự án NOXH. Nhờ mọi người hỗ trợ gửi:
 1. Ảnh chụp/quét Giấy chứng nhận Đăng ký Doanh nghiệp (để kiểm tra chính xác MST, địa chỉ trụ sở đăng ký và người đại diện).
 2. Các văn bản pháp lý dự án có thể công khai (ví dụ: Quyết định phê duyệt dự án, Giấy phép xây dựng, hoặc văn bản của Sở Xây dựng chấp thuận đủ điều kiện bán/cho thuê nhà ở xã hội hình thành trong tương lai).
 3. Quy trình & biểu mẫu đăng ký mua nhà để khách hàng có thể tải về trực tiếp từ website.
