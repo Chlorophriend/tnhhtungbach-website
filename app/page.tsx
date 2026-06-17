@@ -166,11 +166,11 @@ export default function Home() {
               <span className="inline-block px-4 py-1.5 rounded-full bg-accent text-white text-xs font-bold uppercase tracking-widest shadow-md">
                 Dự án trọng điểm Quế Võ, Bắc Ninh
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal leading-normal">
                 Nhà Ở Xã Hội <br />
                 <span className="text-accent">TÙNG BÁCH</span>
               </h1>
-              <p className="text-lg md:text-xl text-slate-200 max-w-2xl font-light leading-relaxed">
+              <p className="text-lg md:text-xl text-slate-200 max-w-2xl font-light leading-relaxed text-justify">
                 Giải pháp an cư lý tưởng cho công nhân viên và người lao động tại trung tâm công nghiệp Quế Võ, Bắc Ninh. Thiết kế hiện đại, hồ sơ pháp lý minh bạch, hỗ trợ vay 80% lãi suất ưu đãi.
               </p>
               
@@ -220,7 +220,7 @@ export default function Home() {
               Nơi Khởi Đầu Hành Trình An Cư Bền Vững
             </p>
             <div className="w-20 h-1 bg-primary mx-auto rounded"></div>
-            <p className="text-slate-600 dark:text-slate-300 font-light">
+            <p className="text-slate-600 dark:text-slate-300 font-light text-justify">
               Dự án Nhà ở xã hội Tùng Bách nằm tại phường Phương Liễu, thị xã Quế Võ, Bắc Ninh. Dự án được quy hoạch bài bản nhằm cung ứng nhu cầu nhà ở thiết thực cho hàng ngàn người lao động trong khu vực.
             </p>
           </div>
@@ -294,7 +294,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Khuôn viên cảnh quan xanh</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Hệ thống công viên nội khu sạch sẽ, bồn hoa và cây cỏ mang lại không khí mát lành.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Hệ thống công viên nội khu sạch sẽ, bồn hoa và cây cỏ mang lại không khí mát lành.</p>
                   </div>
                 </div>
 
@@ -304,7 +304,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Khu vui chơi trẻ em</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Sân chơi an toàn rộng rãi cho các bé thoải mái sáng tạo và vận động ngoài trời.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Sân chơi an toàn rộng rãi cho các bé thoải mái sáng tạo và vận động ngoài trời.</p>
                   </div>
                 </div>
 
@@ -314,7 +314,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Hầm để xe rộng rãi</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Khu vực đỗ xe máy, ô tô an ninh được thiết kế quy chuẩn hiện đại.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Khu vực đỗ xe máy, ô tô an ninh được thiết kế quy chuẩn hiện đại.</p>
                   </div>
                 </div>
 
@@ -324,7 +324,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Hệ thống an ninh 24/7</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Bảo vệ trực chốt kiểm soát cùng camera giám sát toàn khu liên tục.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Bảo vệ trực chốt kiểm soát cùng camera giám sát toàn khu liên tục.</p>
                   </div>
                 </div>
               </div>
@@ -460,7 +460,7 @@ export default function Home() {
               Hành Trình Kiến Tạo Tổ Ấm
             </p>
             <div className="w-16 h-1 bg-primary mx-auto rounded"></div>
-            <p className="text-slate-600 dark:text-slate-300 font-light">
+            <p className="text-slate-600 dark:text-slate-300 font-light text-justify">
               Chúng tôi cam kết thi công đúng tiến độ dự án đề ra và cập nhật thông tin minh bạch định kỳ đến các chủ nhân tương lai.
             </p>
           </div>
@@ -545,7 +545,7 @@ export default function Home() {
                 </h2>
                 <div className="w-16 h-1 bg-primary rounded"></div>
               </div>
-              <p className="text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 font-light leading-relaxed text-justify">
                 Đừng bỏ lỡ cơ hội vàng để nhận thông tin mở bán đợt 1 và được hỗ trợ tư vấn hồ sơ miễn phí trực tiếp từ chủ đầu tư Công ty TNHH Tùng Bách.
               </p>
               

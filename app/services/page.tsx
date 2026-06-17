@@ -40,7 +40,7 @@ export default function ServicesPage() {
               📝
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">Tư Vấn Hồ Sơ NOXH</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
               Hỗ trợ toàn bộ quy trình chuẩn bị hồ sơ pháp lý, chứng minh điều kiện cư trú và thu nhập theo đúng mẫu quy định của Sở Xây dựng Bắc Ninh, đảm bảo tỷ lệ xét duyệt tối đa.
             </p>
           </div>
@@ -50,8 +50,8 @@ export default function ServicesPage() {
               🛋️
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">Nội Thất & Thiết Kế</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light">
-              Kết hợp chặt chẽ cùng thương hiệu **Nội thất Tùng Bách** cung cấp các gói hoàn thiện căn hộ từ cơ bản đến cao cấp, tối ưu hóa không gian, vật liệu bền bỉ và ưu đãi đặc quyền.
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
+              Kết hợp chặt chẽ cùng thương hiệu <strong className="font-semibold text-slate-900 dark:text-white">Nội thất Tùng Bách</strong> cung cấp các gói hoàn thiện căn hộ từ cơ bản đến cao cấp, tối ưu hóa không gian, vật liệu bền bỉ và ưu đãi đặc quyền.
             </p>
           </div>
 
@@ -60,7 +60,7 @@ export default function ServicesPage() {
               🤝
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">Môi Giới & Ký Gửi</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
               Dịch vụ hỗ trợ chuyển nhượng hợp pháp, tư vấn cho thuê hoặc mua lại căn hộ với đầy đủ thủ tục pháp lý, bảo vệ quyền lợi tài chính lâu dài cho khách hàng.
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
                   {selectedLayout === 'A' ? 'Mẫu A: Thiết kế tối giản, công năng' : 'Mẫu B: Tổ ấm lý tưởng cho gia đình'}
                 </h3>
-                <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm font-light">
+                <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm font-light text-justify">
                   {selectedLayout === 'A' 
                     ? 'Phù hợp cho các cặp vợ chồng trẻ hoặc người độc thân làm việc tại các khu công nghiệp.' 
                     : 'Không gian mở rộng rãi với 2 lô gia thông thoáng, đáp ứng trọn vẹn nhu cầu sinh hoạt gia đình 2-3 thế hệ.'}

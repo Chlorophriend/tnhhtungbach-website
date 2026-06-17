@@ -38,7 +38,7 @@ export default function AboutPage() {
               👁️
             </div>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Tầm Nhìn</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
               [Nhập nội dung Tầm nhìn tại đây. Ví dụ: Trở thành doanh nghiệp hàng đầu trong lĩnh vực phát triển nhà ở xã hội và bất động sản phân khúc đại chúng tại tỉnh Bắc Ninh, kiến tạo những khu đô thị văn minh, tiện ích đầy đủ cho cư dân.]
             </p>
           </div>
@@ -49,7 +49,7 @@ export default function AboutPage() {
               🎯
             </div>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Sứ Mệnh</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
               [Nhập nội dung Sứ mệnh tại đây. Ví dụ: Cung cấp giải pháp an cư chất lượng cao, giá thành hợp lý và hồ sơ pháp lý minh bạch cho người lao động có thu nhập trung bình/thấp, góp phần đảm bảo an sinh xã hội địa phương.]
             </p>
           </div>
@@ -64,19 +64,19 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-3 gap-6 pt-2">
             <div className="space-y-2">
               <span className="text-lg font-bold text-primary dark:text-accent">01. Uy Tín</span>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
                 Cam kết chất lượng công trình và bàn giao đúng tiến độ, xây dựng niềm tin vững chắc đối với khách hàng và đối tác.
               </p>
             </div>
             <div className="space-y-2">
               <span className="text-lg font-bold text-primary dark:text-accent">02. Tận Tâm</span>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
                 Luôn đặt lợi ích và sự hài lòng của cư dân làm trọng tâm hành động, đồng hành và hỗ trợ tối đa thủ tục mua nhà.
               </p>
             </div>
             <div className="space-y-2">
               <span className="text-lg font-bold text-primary dark:text-accent">03. Minh Bạch</span>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light">
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
                 Mọi quy trình pháp lý, hợp đồng mua bán, giá cả đều công khai rõ ràng, tuân thủ nghiêm ngặt quy định pháp luật.
               </p>
             </div>

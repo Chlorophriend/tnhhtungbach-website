@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,6 +64,13 @@ export default function Header() {
     }
   };
 
+  const isHome = pathname === '/';
+  const forceLightText = isHome && !scrolled;
+
+  const navLinkClass = forceLightText
+    ? 'text-white/95 hover:text-accent transition-colors text-sm font-semibold tracking-normal leading-normal'
+    : 'text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-accent transition-colors text-sm font-semibold tracking-normal leading-normal';
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -84,53 +93,57 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-extrabold text-primary dark:text-white leading-tight tracking-tight uppercase group-hover:text-accent transition-colors">
+              <span className={`text-base font-extrabold leading-normal tracking-normal uppercase transition-colors ${
+                forceLightText ? 'text-white' : 'text-primary dark:text-white group-hover:text-accent'
+              }`}>
                 TÙNG BÁCH
               </span>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold leading-none tracking-wider uppercase">
+              <span className={`text-[10px] font-bold leading-none tracking-normal uppercase transition-colors ${
+                forceLightText ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'
+              }`}>
                 BẤT ĐỘNG SẢN
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 font-medium text-slate-700 dark:text-slate-200">
+          <nav className="hidden md:flex items-center gap-8 font-medium">
             <a 
               href="#overview" 
               onClick={(e) => handleNavClick(e, 'overview')}
-              className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
+              className={navLinkClass}
             >
               Tổng quan
             </a>
             <a 
               href="#highlights" 
               onClick={(e) => handleNavClick(e, 'highlights')}
-              className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
+              className={navLinkClass}
             >
               Tiện ích
             </a>
             <Link 
               href="/services" 
-              className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
+              className={navLinkClass}
             >
               Dịch vụ
             </Link>
             <a 
               href="#progress" 
               onClick={(e) => handleNavClick(e, 'progress')}
-              className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
+              className={navLinkClass}
             >
               Tiến độ
             </a>
             <Link 
               href="/about" 
-              className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
+              className={navLinkClass}
             >
               Giới thiệu
             </Link>
             <Link 
               href="/contact" 
-              className="hover:text-primary dark:hover:text-accent transition-colors text-sm"
+              className={navLinkClass}
             >
               Liên hệ
             </Link>
@@ -141,7 +154,11 @@ export default function Header() {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/80 text-slate-700 dark:text-amber-400 transition-colors shadow-sm cursor-pointer border-0"
+              className={`p-2.5 rounded-full transition-colors shadow-sm cursor-pointer border-0 ${
+                forceLightText 
+                  ? 'bg-white/10 hover:bg-white/20 text-white/95' 
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/80 text-slate-700 dark:text-amber-400'
+              }`}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -169,7 +186,11 @@ export default function Header() {
             {/* Theme Toggle Button for mobile header */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full bg-slate-100 dark:bg-emerald-950/60 text-slate-700 dark:text-amber-400 transition-colors shadow-sm cursor-pointer border-0"
+              className={`p-2.5 rounded-full transition-colors shadow-sm cursor-pointer border-0 ${
+                forceLightText
+                  ? 'bg-white/10 hover:bg-white/20 text-white/95'
+                  : 'bg-slate-100 dark:bg-emerald-950/60 text-slate-700 dark:text-amber-400'
+              }`}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -186,7 +207,11 @@ export default function Header() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="text-slate-700 dark:text-slate-200 hover:text-primary focus:outline-none p-2 rounded-md"
+              className={`focus:outline-none p-2 rounded-md ${
+                forceLightText 
+                  ? 'text-white hover:text-accent' 
+                  : 'text-slate-700 dark:text-slate-200 hover:text-primary'
+              }`}
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
