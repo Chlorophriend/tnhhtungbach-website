@@ -1,4 +1,10 @@
+# Website Công ty TNHH Tùng Bách
+Trang thông tin chính thức của dự án Nhà ở xã hội Tùng Bách (Quế Võ, Bắc Ninh). Deploy tự động thông qua GitHub Pages.
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
 
 ## Getting Started
 
