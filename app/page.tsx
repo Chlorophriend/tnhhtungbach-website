@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 // Typings
@@ -13,7 +13,8 @@ interface FormData {
 }
 
 export default function Home() {
-  // 2. Financial Calculator State
+  const [animateIn, setAnimateIn] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // 3. Eligibility Quiz State
   const [quizStep, setQuizStep] = useState<number>(0);
@@ -34,6 +35,61 @@ export default function Home() {
     loading?: boolean;
   }>({});
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimateIn(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Gallery Images from public/renders
+  const galleryImages = [
+    {
+      src: "/renders/z7946161277627_974316de9df63ed736c0cc3d64525a08.jpg",
+      title: "Toàn cảnh dự án từ trên cao",
+      desc: "4 block chung cư 12 tầng sừng sững và khang trang nổi bật tại trung tâm Khu đô thị mới Quế Võ."
+    },
+    {
+      src: "/renders/z7946160675673_11e152accbe5beb864deb558c91e4aba.jpg",
+      title: "Mặt đứng của dự án",
+      desc: "Các block nhà đang trong những công đoạn hoàn thiện sơn ngoài và hạ tầng cảnh quan cuối cùng."
+    },
+    {
+      src: "/renders/z7946161037038_31f627f3deb3f9e03daeb674242d8a31.jpg",
+      title: "Cận cảnh tháp căn hộ",
+      desc: "Kiến trúc thiết kế hiện đại, tối đa hóa mặt thoáng đón nắng gió tự nhiên cho các phòng ngủ."
+    },
+    {
+      src: "/renders/z7946160913021_d78d2be2b26b3b7a8d3113648700271e.jpg",
+      title: "Lắp đặt kính ban công",
+      desc: "Đang tiến hành lắp đặt hệ thống lan can kính cường lực an toàn và hệ thống cửa kính căn hộ."
+    },
+    {
+      src: "/renders/z7946165624476_831ef3e79b091b9027d6a7264b93eed2.jpg",
+      title: "Hầm để xe & Đường dẫn liên kết",
+      desc: "Lối xuống hầm gửi xe liên kết rộng rãi, đang được hoàn thiện sơn và hệ thống chỉ dẫn."
+    },
+    {
+      src: "/renders/z7946165633218_f50a49a936d33537f0bbe07c5bd646bf.jpg",
+      title: "Khuôn viên cảnh quan cây xanh",
+      desc: "Trồng cây bóng mát, lát đá lối đi dạo nội khu để chuẩn bị đón những cư dân đầu tiên."
+    },
+    {
+      src: "/renders/z7946165640415_4b56e131c9e3b66f11328618672210f8.jpg",
+      title: "Trải thảm nhựa đường nội bộ",
+      desc: "Hạ tầng giao thông quanh block nhà được thảm nhựa asphalt bằng phẳng và sạch đẹp."
+    },
+    {
+      src: "/renders/z7946165647245_83b81355e2af10d899fc8d406545988a.jpg",
+      title: "Không gian hành lang chung",
+      desc: "Hành lang căn hộ rộng rãi, sạch sẽ với hệ thống đèn led tiết kiệm điện và cửa thoát hiểm."
+    },
+    {
+      src: "/renders/z7946169811123_c19e55658c59d0f96bd04cf73de78dcf.jpg",
+      title: "Hệ thống PCCC tiêu chuẩn",
+      desc: "Tủ PCCC và các đầu phun nước tự động được thi công đồng bộ, đã được Công an tỉnh nghiệm thu."
+    }
+  ];
 
   // Eligibility Quiz questions
   const quizQuestions = [
@@ -123,7 +179,6 @@ export default function Home() {
     } catch (error) {
       console.log('API failed, falling back to Zalo redirect...', error);
       
-      // Copy registration info to clipboard so they can paste it in Zalo chat
       const message = `Chào Tùng Bách BĐS, tôi muốn đăng ký tư vấn dự án Nhà ở xã hội Quế Võ. Thông tin:\n- Họ tên: ${formData.name}\n- SĐT: ${formData.phone}${formData.email ? `\n- Email: ${formData.email}` : ''}${formData.notes ? `\n- Nhu cầu: ${formData.notes}` : ''}`;
       
       setFormStatus({
@@ -138,15 +193,24 @@ export default function Home() {
         } catch (clipError) {
           console.error('Clipboard write failed:', clipError);
         }
-        // Open Zalo. You can replace "02300290374" with your Zalo hotline mobile number
-        window.open('https://zalo.me/02300290374', '_blank');
+        window.open('https://zalo.me/0393005566', '_blank');
         setFormStatus({});
         setFormData({ name: '', phone: '', email: '', notes: '', source: 'Landing Page Form' });
       }, 1000);
     }
   };
 
+  const nextLightbox = () => {
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex + 1) % galleryImages.length);
+    }
+  };
 
+  const prevLightbox = () => {
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length);
+    }
+  };
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-slate-50 dark:bg-emerald-950/20 text-slate-800 dark:text-slate-100">
@@ -190,18 +254,117 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Hero Right Media/Image */}
-            <div className="md:col-span-5 relative w-full h-[320px] md:h-[450px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 bg-slate-800">
-              <Image
-                src="/renders/project_render.png"
-                alt="Phối cảnh dự án Nhà ở xã hội Tùng Bách Quế Võ"
-                fill
-                priority
-                className="object-cover animate-fade-in"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex flex-col justify-end p-6">
-                <h3 className="text-lg font-bold text-white">Phối cảnh thực tế</h3>
-                <p className="text-xs text-slate-300 mt-1">Dự án Nhà ở xã hội Tùng Bách Quế Võ, Bắc Ninh</p>
+            {/* Hero Right Media/Image - 3D Staggered Slice Animation */}
+            <div className="md:col-span-5 relative w-full h-[320px] md:h-[450px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 bg-slate-800/40 aspect-[4/3] md:aspect-auto">
+              <div className="absolute inset-0 w-full h-full overflow-hidden bg-slate-900/60">
+                
+                {/* Background blurred render as backdrop */}
+                <Image
+                  src="/renders/raw up-top building.jpg"
+                  alt="Backdrop"
+                  fill
+                  priority
+                  className="object-cover opacity-15 blur-sm scale-105"
+                />
+                
+                {/* 5 building slices absolute stacked with staggered transitions */}
+                <div className="absolute inset-0 w-full h-full">
+                  {/* Slice 5 (Base / Ground floor) - Slides up */}
+                  <div 
+                    className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={{
+                      transform: animateIn ? 'translateY(0) scale(1)' : 'translateY(80px) scale(0.95)',
+                      opacity: animateIn ? 1 : 0,
+                      transitionDelay: '0ms'
+                    }}
+                  >
+                    <Image
+                      src="/renders/building_slice_5.png"
+                      alt="Tòa nhà Tùng Bách - Lớp 5"
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Slice 4 (Lower floors) - Slides in from right */}
+                  <div 
+                    className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={{
+                      transform: animateIn ? 'translateX(0) scale(1)' : 'translateX(100px) scale(0.95)',
+                      opacity: animateIn ? 1 : 0,
+                      transitionDelay: '150ms'
+                    }}
+                  >
+                    <Image
+                      src="/renders/building_slice_4.png"
+                      alt="Tòa nhà Tùng Bách - Lớp 4"
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Slice 3 (Middle floors) - Slides in from left */}
+                  <div 
+                    className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={{
+                      transform: animateIn ? 'translateX(0) scale(1)' : 'translateX(-100px) scale(0.95)',
+                      opacity: animateIn ? 1 : 0,
+                      transitionDelay: '300ms'
+                    }}
+                  >
+                    <Image
+                      src="/renders/building_slice_3.png"
+                      alt="Tòa nhà Tùng Bách - Lớp 3"
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Slice 2 (Upper floors) - Slides in from right */}
+                  <div 
+                    className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={{
+                      transform: animateIn ? 'translateX(0) scale(1)' : 'translateX(100px) scale(0.95)',
+                      opacity: animateIn ? 1 : 0,
+                      transitionDelay: '450ms'
+                    }}
+                  >
+                    <Image
+                      src="/renders/building_slice_2.png"
+                      alt="Tòa nhà Tùng Bách - Lớp 2"
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Slice 1 (Top / Roof) - Slides down & slightly left */}
+                  <div 
+                    className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={{
+                      transform: animateIn ? 'translateY(0) translateX(0) scale(1)' : 'translateY(-50px) translateX(-30px) scale(0.95)',
+                      opacity: animateIn ? 1 : 0,
+                      transitionDelay: '600ms'
+                    }}
+                  >
+                    <Image
+                      src="/renders/building_slice_1.png"
+                      alt="Tòa nhà Tùng Bách - Lớp 1"
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Overlay text */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex flex-col justify-end p-6 z-10">
+                  <h3 className="text-lg font-bold text-white">Ảnh thực tế bay drone</h3>
+                  <p className="text-xs text-slate-300 mt-1">Dự án Nhà ở xã hội Tùng Bách Quế Võ, Bắc Ninh</p>
+                </div>
               </div>
             </div>
           </div>
@@ -253,7 +416,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="font-bold text-lg text-slate-900 dark:text-white">Diện Tích Tối Ưu</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Thiết kế thông minh từ 61m² (2PN, 1WC) đến 71.3m² (2PN, 2WC).</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Thiết kế thông minh căn 1.5 phòng ngủ đến 2 phòng ngủ (47m² - 70m²).</p>
             </div>
 
             <div className="p-6 rounded-2xl bg-slate-50 dark:bg-emerald-950/20 border border-slate-100 dark:border-emerald-900 shadow-sm text-center space-y-3">
@@ -263,7 +426,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="font-bold text-lg text-slate-900 dark:text-white">Pháp Lý Vững Chắc</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Được phê duyệt bởi cơ quan chức năng, hỗ trợ ký HĐMB trực tiếp chủ đầu tư.</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Được phê duyệt bởi cơ quan chức năng, nghiệm thu PCCC hoàn tất, ký HĐMB trực tiếp.</p>
             </div>
           </div>
         </div>
@@ -294,7 +457,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Khuôn viên cảnh quan xanh</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Hệ thống công viên nội khu sạch sẽ, bồn hoa và cây cỏ mang lại không khí mát lành.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Hệ thống công viên nội khu được đầu tư cây xanh bóng mát, vườn hoa mang lại không khí thoáng đãng.</p>
                   </div>
                 </div>
 
@@ -303,8 +466,8 @@ export default function Home() {
                     ✓
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white">Khu vui chơi trẻ em</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Sân chơi an toàn rộng rãi cho các bé thoải mái sáng tạo và vận động ngoài trời.</p>
+                    <h4 className="font-bold text-slate-900 dark:text-white">Nhà trẻ tiện ích</h4>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Dành riêng hơn 500m² tại tầng 2 của hai tòa tháp làm trường mầm non nội khu chất lượng cao.</p>
                   </div>
                 </div>
 
@@ -313,8 +476,8 @@ export default function Home() {
                     ✓
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white">Hầm để xe rộng rãi</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Khu vực đỗ xe máy, ô tô an ninh được thiết kế quy chuẩn hiện đại.</p>
+                    <h4 className="font-bold text-slate-900 dark:text-white">Hầm gửi xe rộng rãi</h4>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Bố trí 2 tầng phục vụ đỗ xe máy và ô tô cho cư dân, quy hoạch thông thoáng và an toàn.</p>
                   </div>
                 </div>
 
@@ -323,14 +486,14 @@ export default function Home() {
                     ✓
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 dark:text-white">Hệ thống an ninh 24/7</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Bảo vệ trực chốt kiểm soát cùng camera giám sát toàn khu liên tục.</p>
+                    <h4 className="font-bold text-slate-900 dark:text-white">Nghiệm thu PCCC an toàn</h4>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 text-justify">Hệ thống báo cháy tự động và họng chữa cháy hiện đại, đã được Công an tỉnh Bắc Ninh nghiệm thu an toàn.</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Highlights Right: Interactive SVG Map/Concept mockup */}
+            {/* Highlights Right: Connection map info */}
             <div className="lg:col-span-5 bg-white dark:bg-emerald-950/20 p-8 rounded-2xl border border-slate-200/60 dark:border-emerald-800/40 shadow-md">
               <h3 className="font-bold text-lg text-slate-950 dark:text-white mb-4">Vị trí kết nối vùng</h3>
               <div className="space-y-4">
@@ -356,8 +519,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
 
       {/* Section Divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/20 via-accent/30 via-primary/20 to-transparent relative z-10" />
@@ -412,7 +573,7 @@ export default function Home() {
                   <div className="space-y-3">
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Chúc mừng! Bạn có tỷ lệ duyệt hồ sơ rất cao</h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400 max-w-lg mx-auto">
-                      Dựa trên các câu trả lời của bạn, bạn hoàn toàn đáp ứng các điều kiện pháp lý để đăng ký mua căn hộ. Hãy tải bộ hồ sơ mẫu hoặc liên hệ ngay bộ phận hỗ trợ pháp lý của Tùng Bách để được nộp hồ sơ sớm.
+                      Dựa trên các câu trả lời của bạn, bạn hoàn toàn đáp ứng các điều kiện pháp lý để đăng ký mua căn hộ. Hãy đăng ký tư vấn pháp lý để được hướng dẫn nộp hồ sơ sớm nhất.
                     </p>
                   </div>
                 ) : (
@@ -465,19 +626,19 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Timeline chart */}
-          <div className="relative border-l-2 border-primary/20 dark:border-emerald-800 ml-4 md:ml-32 space-y-12">
+          {/* Timeline chart with real schedule */}
+          <div className="relative border-l-2 border-primary/20 dark:border-emerald-800 ml-4 md:ml-32 space-y-12 mb-20">
             
             {/* Timeline item 1 */}
             <div className="relative pl-8 md:pl-0">
               <div className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-accent border-2 border-white dark:border-emerald-950"></div>
               <div className="grid md:grid-cols-12 gap-4">
                 <div className="md:col-span-3 md:text-right font-bold text-primary dark:text-accent md:-ml-36 pr-4">
-                  Quý 2/2026
+                  Tháng 06/2026
                 </div>
                 <div className="md:col-span-9 bg-white dark:bg-emerald-950/20 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-emerald-900">
-                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Thi công phần thân & đổ bê tông sàn</h4>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Đang triển khai đổ bê tông sàn tầng 10 đối với hai tòa CT01A và CT01B. Đảm bảo đúng chất lượng kỹ thuật giám sát.</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Hoàn thiện cảnh quan & Bàn giao cư dân</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 text-justify">Hoàn thành thi công vườn hoa nội khu, vỉa hè lát đá và trải nhựa đường bao quanh các block nhà. Nộp hồ sơ nghiệm thu hoàn thành lên Sở Xây dựng để chính thức bàn giao chìa khóa cho cư dân.</p>
                 </div>
               </div>
             </div>
@@ -487,11 +648,11 @@ export default function Home() {
               <div className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-white dark:border-emerald-950"></div>
               <div className="grid md:grid-cols-12 gap-4">
                 <div className="md:col-span-3 md:text-right font-bold text-slate-500 md:-ml-36 pr-4">
-                  Quý 1/2026
+                  Tháng 05/2026
                 </div>
                 <div className="md:col-span-9 bg-white dark:bg-emerald-950/20 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-emerald-900">
-                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Hoàn thành móng hầm chung</h4>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Nghiệm thu toàn bộ kết cấu bê tông cốt thép đài móng và hầm liên kết đài móng của 4 tòa chung cư.</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Giám sát của Thường trực HĐND tỉnh & Mở bán Đợt 3</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 text-justify">Đoàn giám sát của HĐND tỉnh Bắc Ninh do Phó Chủ tịch HĐND tỉnh Lâm Thị Hương Thành làm Trưởng đoàn tiến hành giám sát thực tế dự án, đánh giá cao kết cấu hạ tầng đồng bộ. Chủ đầu tư mở bán chính thức Đợt 3.</p>
                 </div>
               </div>
             </div>
@@ -501,11 +662,11 @@ export default function Home() {
               <div className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700 border-2 border-white dark:border-emerald-950"></div>
               <div className="grid md:grid-cols-12 gap-4">
                 <div className="md:col-span-3 md:text-right font-bold text-slate-500 md:-ml-36 pr-4">
-                  Quý 4/2025
+                  Đầu năm 2026
                 </div>
                 <div className="md:col-span-9 bg-white dark:bg-emerald-950/20 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-emerald-900">
-                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Khởi công & Ép cọc thử tải</h4>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Lễ khởi công chính thức dự án Nhà ở xã hội Tùng Bách Quế Võ. Ép cọc bê tông thí nghiệm và thử tải móng đợt đầu.</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Nghiệm thu PCCC an toàn & Bàn giao kỹ thuật</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 text-justify">Cơ quan Công an PCCC tỉnh Bắc Ninh chính thức nghiệm thu hệ thống Phòng cháy chữa cháy đạt chuẩn an toàn. Chủ đầu tư hoàn thành bàn giao kỹ thuật cho gần 500 căn hộ đầu tiên.</p>
                 </div>
               </div>
             </div>
@@ -515,15 +676,200 @@ export default function Home() {
               <div className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700 border-2 border-white dark:border-emerald-950"></div>
               <div className="grid md:grid-cols-12 gap-4">
                 <div className="md:col-span-3 md:text-right font-bold text-slate-500 md:-ml-36 pr-4">
-                  Quý 3/2025
+                  Tháng 09/2024
                 </div>
                 <div className="md:col-span-9 bg-white dark:bg-emerald-950/20 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-emerald-900">
-                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Hoàn tất thủ tục hồ sơ mặt bằng</h4>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Ủy ban nhân dân tỉnh bàn giao mốc giới đất sạch cho chủ đầu tư Công ty TNHH Tùng Bách triển khai hạ tầng kỹ thuật.</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-base">Khởi công công trình</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 text-justify">Chính thức làm lễ khởi công xây dựng dự án với tổng mức đầu tư hơn 900 tỷ đồng, thi công liên tục cọc đài móng và hầm liên kết chung đài móng.</p>
                 </div>
               </div>
             </div>
 
+          </div>
+
+          {/* PROJECT PROGRESS GALLERY - Masonry Grid */}
+          <div className="space-y-8 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <div className="text-center space-y-2">
+              <span className="text-xs font-bold text-accent uppercase tracking-widest block">Thư Viện Ảnh Tiến Độ Thực Tế</span>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Hình Ảnh Chụp Tại Công Trường</h3>
+              <div className="w-12 h-0.5 bg-primary mx-auto rounded"></div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {galleryImages.map((image, idx) => (
+                <div 
+                  key={idx} 
+                  className="group relative h-64 overflow-hidden rounded-2xl cursor-pointer shadow-sm border border-slate-200/40 dark:border-slate-800/40 bg-slate-100 dark:bg-slate-900 transition-transform duration-300 hover:scale-102"
+                  onClick={() => setLightboxIndex(idx)}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                    <span className="font-bold text-sm">{image.title}</span>
+                    <span className="text-[10px] text-slate-300 mt-1 line-clamp-2">{image.desc}</span>
+                  </div>
+                  <div className="absolute top-3 right-3 p-1.5 rounded-full bg-black/45 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Lightbox Modal for Gallery Images */}
+      {lightboxIndex !== null && (
+        <div className="fixed inset-0 z-50 bg-black/95 flex flex-col justify-between p-4 md:p-8 animate-fade-in">
+          {/* Header Controls */}
+          <div className="flex justify-between items-center text-white z-10">
+            <span className="text-xs font-semibold tracking-wider uppercase">
+              Hình ảnh {lightboxIndex + 1} / {galleryImages.length}
+            </span>
+            <button 
+              onClick={() => setLightboxIndex(null)}
+              className="p-2 rounded-full hover:bg-white/10 text-white cursor-pointer transition-colors border-0"
+              aria-label="Close lightbox"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Image & Navigation */}
+          <div className="relative flex-grow flex items-center justify-center my-4">
+            <button 
+              onClick={prevLightbox}
+              className="absolute left-0 p-3 rounded-full hover:bg-white/10 text-white cursor-pointer transition-colors border-0 z-10"
+              aria-label="Previous image"
+            >
+              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <div className="relative w-full max-w-4xl h-[70vh] rounded-lg overflow-hidden">
+              <Image
+                src={galleryImages[lightboxIndex].src}
+                alt={galleryImages[lightboxIndex].title}
+                fill
+                className="object-contain"
+                sizes="100vw"
+                priority
+              />
+            </div>
+
+            <button 
+              onClick={nextLightbox}
+              className="absolute right-0 p-3 rounded-full hover:bg-white/10 text-white cursor-pointer transition-colors border-0 z-10"
+              aria-label="Next image"
+            >
+              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Footer Text Details */}
+          <div className="text-center text-white max-w-2xl mx-auto space-y-1 pb-4 z-10">
+            <h4 className="font-bold text-lg">{galleryImages[lightboxIndex].title}</h4>
+            <p className="text-xs text-slate-300 font-light leading-relaxed">{galleryImages[lightboxIndex].desc}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Gradient border at top */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 via-accent/40 via-primary/30 to-transparent relative z-10" />
+
+      {/* MEDIA & PRESS COVERAGE SECTION */}
+      <section className="py-20 bg-white dark:bg-slate-900 scroll-mt-16">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-xs font-bold text-accent uppercase tracking-widest block">Truyền Thông nói về chúng tôi</span>
+            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">
+              Báo Chí nói về Dự Án
+            </h2>
+            <div className="w-16 h-1 bg-primary mx-auto rounded"></div>
+            <p className="text-slate-600 dark:text-slate-300 font-light text-justify md:text-center">
+              Các bài đưa tin chính thức từ cơ quan báo chí và truyền thông quốc gia đưa tin về tiến độ thi công, an toàn phòng cháy chữa cháy và hoạt động giám sát pháp lý của dự án.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Card 1: Bao Xay Dung */}
+            <div className="bg-slate-50 dark:bg-emerald-950/20 p-6 rounded-3xl border border-slate-200/40 dark:border-emerald-800/40 flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="px-3 py-1 text-xs font-bold rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                    Báo Xây Dựng (Bộ Xây dựng)
+                  </span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                    04/06/2026
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                  Cận cảnh dự án nhà ở xã hội 900 căn hộ ở Bắc Ninh trước ngày về đích
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
+                  Dự án nhà ở xã hội trong khu đô thị mới Quế Võ có quy mô 914 căn hộ đang hoàn thiện những hạng mục cuối cùng, dự kiến đón cư dân vào ở từ tháng 6/2026. Dự án đã được nghiệm thu PCCC an toàn, hiện chủ đầu tư đã bàn giao kỹ thuật cho gần 500 căn hộ...
+                </p>
+              </div>
+              <div className="pt-6">
+                <a 
+                  href="https://batdongsan.baoxaydung.vn/can-canh-du-an-nha-o-xa-hoi-900-can-ho-o-bac-ninh-truoc-ngay-ve-dich-192260604144410496.htm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary dark:text-accent hover:underline"
+                >
+                  Đọc toàn văn bài viết
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Card 2: Bao Dai Bieu Nhan Dan */}
+            <div className="bg-slate-50 dark:bg-emerald-950/20 p-6 rounded-3xl border border-slate-200/40 dark:border-emerald-800/40 flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                    Báo Đại Biểu Nhân Dân
+                  </span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                    23/05/2026
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                  Bắc Ninh: Sớm đưa toàn bộ Dự án nhà ở xã hội tại Khu đô thị mới Quế Võ đến với người dân
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
+                  Đoàn giám sát của Thường trực HĐND tỉnh Bắc Ninh do Phó Chủ tịch HĐND tỉnh Lâm Thị Hương Thành làm Trưởng đoàn tiến hành giám sát thực tế dự án. Chủ đầu tư Công ty TNHH Tùng Bách đã hoàn tất đầy đủ quy trình pháp lý, hạ tầng, PCCC, công tác mở bán công khai minh bạch...
+                </p>
+              </div>
+              <div className="pt-6">
+                <a 
+                  href="https://daibieunhandan.vn/bac-ninh-som-dua-toan-bo-du-an-nha-o-xa-hoi-tai-khu-do-thi-moi-que-vo-den-voi-nguoi-dan-10417888.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary dark:text-accent hover:underline"
+                >
+                  Đọc toàn văn bài viết
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -546,7 +892,7 @@ export default function Home() {
                 <div className="w-16 h-1 bg-primary rounded"></div>
               </div>
               <p className="text-slate-600 dark:text-slate-300 font-light leading-relaxed text-justify">
-                Đừng bỏ lỡ cơ hội vàng để nhận thông tin mở bán đợt 1 và được hỗ trợ tư vấn hồ sơ miễn phí trực tiếp từ chủ đầu tư Công ty TNHH Tùng Bách.
+                Đừng bỏ lỡ cơ hội nhận thông tin bảng hàng mở bán đợt cuối và được đội ngũ hỗ trợ pháp lý của Công ty TNHH Tùng Bách hướng dẫn làm hồ sơ xét duyệt mua/thuê nhà đúng quy chuẩn.
               </p>
               
               <div className="space-y-4 text-sm text-slate-600 dark:text-slate-400">
@@ -560,7 +906,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="w-6 h-6 rounded-full bg-primary-light dark:bg-emerald-900 text-primary dark:text-accent flex items-center justify-center font-bold text-xs">✓</span>
-                  <span>Đăng ký tham quan thực tế căn hộ mẫu đang hoàn thiện.</span>
+                  <span>Đăng ký tham quan thực tế các căn hộ hoàn thiện tại dự án.</span>
                 </div>
               </div>
             </div>
