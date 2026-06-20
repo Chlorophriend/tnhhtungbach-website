@@ -14,6 +14,8 @@ interface FormData {
 
 export default function Home() {
   const [animateIn, setAnimateIn] = useState(false);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -28,12 +30,33 @@ export default function Home() {
     loading?: boolean;
   }>({});
 
+  const handleImageLoad = () => {
+    setLoadedCount((prev) => {
+      const nextCount = prev + 1;
+      if (nextCount === 5) {
+        setImagesLoaded(true);
+      }
+      return nextCount;
+    });
+  };
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimateIn(true);
-    }, 100);
-    return () => clearTimeout(timer);
+    // Fallback timer: force transition after 2.5 seconds if loading takes too long
+    const fallback = setTimeout(() => {
+      setImagesLoaded(true);
+    }, 2500);
+
+    return () => clearTimeout(fallback);
   }, []);
+
+  useEffect(() => {
+    if (imagesLoaded) {
+      const timer = setTimeout(() => {
+        setAnimateIn(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [imagesLoaded]);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,9 +172,9 @@ export default function Home() {
             </div>
 
             {/* Hero Right Content - 3D Staggered Slice Animation (Bigger & Fuller) */}
-            <div className="md:col-span-5 flex items-center justify-center relative w-full h-[380px] sm:h-[480px] md:h-[580px] lg:h-[650px] overflow-visible">
+            <div className="md:col-span-5 flex items-center justify-center relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[620px] overflow-visible">
               {/* Stacked Building Cutout - Blends directly into background (no container box, no borders, no labels) */}
-              <div className="relative w-full h-full max-w-[500px] md:max-w-none aspect-[4/3] overflow-visible">
+              <div className="relative w-full h-full max-w-[500px] md:max-w-none aspect-[16/9] overflow-visible">
                 
                 {/* Slice 5 (Base / Ground floor) - Slides up */}
                 <div 
@@ -167,6 +190,7 @@ export default function Home() {
                     alt="Tòa nhà Tùng Bách - Lớp 5"
                     fill
                     priority
+                    onLoad={handleImageLoad}
                     className="object-contain"
                   />
                 </div>
@@ -185,6 +209,7 @@ export default function Home() {
                     alt="Tòa nhà Tùng Bách - Lớp 4"
                     fill
                     priority
+                    onLoad={handleImageLoad}
                     className="object-contain"
                   />
                 </div>
@@ -203,6 +228,7 @@ export default function Home() {
                     alt="Tòa nhà Tùng Bách - Lớp 3"
                     fill
                     priority
+                    onLoad={handleImageLoad}
                     className="object-contain"
                   />
                 </div>
@@ -221,6 +247,7 @@ export default function Home() {
                     alt="Tòa nhà Tùng Bách - Lớp 2"
                     fill
                     priority
+                    onLoad={handleImageLoad}
                     className="object-contain"
                   />
                 </div>
@@ -239,6 +266,7 @@ export default function Home() {
                     alt="Tòa nhà Tùng Bách - Lớp 1"
                     fill
                     priority
+                    onLoad={handleImageLoad}
                     className="object-contain"
                   />
                 </div>
