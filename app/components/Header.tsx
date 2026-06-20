@@ -20,6 +20,9 @@ export default function Header() {
       }
     };
     window.addEventListener('scroll', handleScroll);
+    
+    // Call handleScroll immediately to set initial state based on current scroll position
+    handleScroll();
 
     // Initial theme check
     if (typeof window !== 'undefined') {
@@ -64,12 +67,7 @@ export default function Header() {
     }
   };
 
-  const isHome = pathname === '/';
-  const forceLightText = isHome && !scrolled;
-
-  const navLinkClass = forceLightText
-    ? 'text-white/95 hover:text-accent transition-colors text-sm font-semibold tracking-normal leading-normal'
-    : 'text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-accent transition-colors text-sm font-semibold tracking-normal leading-normal';
+  const navLinkClass = 'text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-accent transition-colors text-sm font-semibold tracking-normal leading-normal';
 
   return (
     <header 
@@ -93,14 +91,10 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className={`text-base font-extrabold leading-normal tracking-normal uppercase transition-colors ${
-                forceLightText ? 'text-white' : 'text-primary dark:text-white group-hover:text-accent'
-              }`}>
+              <span className="text-base font-extrabold text-primary dark:text-white leading-normal tracking-normal uppercase transition-colors group-hover:text-accent">
                 TÙNG BÁCH
               </span>
-              <span className={`text-[10px] font-bold leading-none tracking-normal uppercase transition-colors ${
-                forceLightText ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'
-              }`}>
+              <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 leading-none tracking-normal uppercase transition-colors">
                 BẤT ĐỘNG SẢN
               </span>
             </div>
@@ -154,16 +148,20 @@ export default function Header() {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className={`p-2.5 rounded-full transition-colors shadow-sm cursor-pointer border-0 ${
-                forceLightText 
-                  ? 'bg-white/10 hover:bg-white/20 text-white/95' 
-                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/80 text-slate-700 dark:text-amber-400'
-              }`}
+              className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/80 text-slate-700 dark:text-amber-400 transition-colors shadow-sm cursor-pointer border-0"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2" />
+                  <path d="M12 20v2" />
+                  <path d="m4.93 4.93 1.41 1.41" />
+                  <path d="m17.66 17.66 1.41 1.41" />
+                  <path d="M2 12h2" />
+                  <path d="M20 12h2" />
+                  <path d="m6.34 17.66-1.41 1.41" />
+                  <path d="m19.07 4.93-1.41 1.41" />
                 </svg>
               ) : (
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -186,16 +184,20 @@ export default function Header() {
             {/* Theme Toggle Button for mobile header */}
             <button
               onClick={toggleTheme}
-              className={`p-2.5 rounded-full transition-colors shadow-sm cursor-pointer border-0 ${
-                forceLightText
-                  ? 'bg-white/10 hover:bg-white/20 text-white/95'
-                  : 'bg-slate-100 dark:bg-emerald-950/60 text-slate-700 dark:text-amber-400'
-              }`}
+              className="p-2.5 rounded-full bg-slate-100 dark:bg-emerald-950/60 text-slate-700 dark:text-amber-400 transition-colors shadow-sm cursor-pointer border-0"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2" />
+                  <path d="M12 20v2" />
+                  <path d="m4.93 4.93 1.41 1.41" />
+                  <path d="m17.66 17.66 1.41 1.41" />
+                  <path d="M2 12h2" />
+                  <path d="M20 12h2" />
+                  <path d="m6.34 17.66-1.41 1.41" />
+                  <path d="m19.07 4.93-1.41 1.41" />
                 </svg>
               ) : (
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -207,11 +209,7 @@ export default function Header() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className={`focus:outline-none p-2 rounded-md ${
-                forceLightText 
-                  ? 'text-white hover:text-accent' 
-                  : 'text-slate-700 dark:text-slate-200 hover:text-primary'
-              }`}
+              className="focus:outline-none p-2 rounded-md text-slate-700 dark:text-slate-200 hover:text-primary transition-colors"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >

@@ -16,6 +16,8 @@
 - [x] Setup local file-based database API (2026-06-17)
 - [x] Created Terms of Service, updated Privacy and Contact pages (2026-06-17)
 - [x] Built interactive domain compliance and leads dashboard (2026-06-17)
+- [x] Fixed Light Mode header elements visibility scroll bug and resolved favicon next/vercel template conflict (2026-06-17)
+- [x] Synchronized header colors (green/slate) when page is at top with scrolled state in Light Mode, and implemented a cleaner Lucide sun icon (2026-06-20)
 
 ## Tin Nhắn Zalo Cần Gửi Cho Team (Copy & Paste)
 
