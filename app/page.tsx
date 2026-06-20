@@ -142,8 +142,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid md:grid-cols-12 gap-12 items-center">
             
-            {/* Hero Left Content */}
-            <div className="md:col-span-7 space-y-6 text-center md:text-left">
+            {/* Hero Left Content (40%) */}
+            <div className="md:col-span-5 space-y-6 text-center md:text-left">
               <span className="inline-block px-4 py-1.5 rounded-full bg-accent text-white text-xs font-bold uppercase tracking-widest shadow-md">
                 Tập đoàn đầu tư hạ tầng & xây dựng uy tín
               </span>
@@ -151,30 +151,12 @@ export default function Home() {
                 CÔNG TY TNHH <br />
                 <span className="text-accent">TÙNG BÁCH</span>
               </h1>
-              <p className="text-lg md:text-xl text-slate-200 max-w-2xl font-light leading-relaxed text-justify md:text-left">
-                Kiến tạo hạ tầng vững bền và phát triển không gian sống chất lượng cao từ năm 2006. Chúng tôi khẳng định uy tín qua năng lực khai thác vật liệu, san lấp nền móng, vận tải logistics và các dự án đô thị, hạ tầng giao thông trọng điểm.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-                <Link 
-                  href="#sectors" 
-                  className="px-8 py-3.5 rounded-full bg-accent hover:bg-accent-hover text-white font-bold text-center shadow-lg transition-transform hover:scale-105 active:scale-95 text-sm"
-                >
-                  Lĩnh Vực Hoạt Động
-                </Link>
-                <Link 
-                  href="/nha-o-xa-hoi" 
-                  className="px-8 py-3.5 rounded-full border-2 border-white/80 hover:bg-white hover:text-primary text-white font-semibold text-center transition-colors text-sm"
-                >
-                  Dự Án Nhà Ở Xã Hội Quế Võ
-                </Link>
-              </div>
             </div>
 
-            {/* Hero Right Content - 3D Staggered Slice Animation (Bigger & Fuller) */}
-            <div className="md:col-span-5 flex items-center justify-center relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[620px] overflow-visible">
+            {/* Hero Right Content - 3D Staggered Slice Animation (60% - Larger & Fuller) */}
+            <div className="md:col-span-7 flex items-center justify-center relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[620px] overflow-visible">
               {/* Stacked Building Cutout - Blends directly into background (no container box, no borders, no labels) */}
-              <div className="relative w-full h-full max-w-[500px] md:max-w-none aspect-[16/9] overflow-visible">
+              <div className="relative w-full h-full max-w-[650px] md:max-w-none aspect-[16/9] overflow-visible">
                 
                 {/* Slice 5 (Base / Ground floor) - Slides up */}
                 <div 
@@ -271,6 +253,28 @@ export default function Home() {
                   />
                 </div>
 
+              </div>
+            </div>
+
+            {/* Hero Bottom - Description and buttons (Full Width below both) */}
+            <div className="col-span-12 mt-6 md:mt-10 pt-8 border-t border-white/10 space-y-6">
+              <p className="text-lg md:text-xl text-slate-200 max-w-4xl font-light leading-relaxed text-justify md:text-left">
+                Kiến tạo hạ tầng vững bền và phát triển không gian sống chất lượng cao từ năm 2006. Chúng tôi khẳng định uy tín qua năng lực khai thác vật liệu, san lấp nền móng, vận tải logistics và các dự án đô thị, hạ tầng giao thông trọng điểm.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <Link 
+                  href="#sectors" 
+                  className="px-8 py-3.5 rounded-full bg-accent hover:bg-accent-hover text-white font-bold text-center shadow-lg transition-transform hover:scale-105 active:scale-95 text-sm"
+                >
+                  Lĩnh Vực Hoạt Động
+                </Link>
+                <Link 
+                  href="/nha-o-xa-hoi" 
+                  className="px-8 py-3.5 rounded-full border-2 border-white/80 hover:bg-white hover:text-primary text-white font-semibold text-center transition-colors text-sm"
+                >
+                  Dự Án Nhà Ở Xã Hội Quế Võ
+                </Link>
               </div>
             </div>
           </div>
