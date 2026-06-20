@@ -124,12 +124,6 @@ export default function Header() {
               Dự án
             </a>
             <Link 
-              href="/nha-o-xa-hoi" 
-              className={navLinkClass}
-            >
-              Dự án NOXH
-            </Link>
-            <Link 
               href="/services" 
               className={navLinkClass}
             >
@@ -258,13 +252,6 @@ export default function Header() {
           >
             Dự án
           </a>
-          <Link
-            href="/nha-o-xa-hoi"
-            onClick={() => setIsOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
-          >
-            Dự án NOXH
-          </Link>
           <Link
             href="/services"
             onClick={() => setIsOpen(false)}

@@ -5,10 +5,10 @@ export default function ContactPage() {
     <div className="container mx-auto px-4 py-16 max-w-4xl mt-8">
       <div className="text-center mb-12 space-y-4">
         <span className="text-xs font-bold text-accent uppercase tracking-widest block">Liên hệ chúng tôi</span>
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">Thông Tin Liên Hệ & Trụ Sở</h1>
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">Thông Tin Liên Hệ & Văn Phòng</h1>
         <div className="w-16 h-1 bg-primary mx-auto rounded"></div>
         <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-          Mọi thắc mắc về hợp tác đầu tư hạ tầng, cung cấp vật liệu xây dựng hoặc tư vấn hồ sơ dự án Nhà ở xã hội Quế Võ, xin vui lòng liên hệ trực tiếp văn phòng Công ty TNHH Tùng Bách.
+          Mọi thắc mắc về hợp tác thi công hạ tầng, san lấp nền móng hoặc liên hệ công việc, xin vui lòng kết nối trực tiếp với văn phòng Công ty TNHH Tùng Bách.
         </p>
       </div>
       
@@ -23,10 +23,10 @@ export default function ContactPage() {
           <div className="space-y-4 text-sm text-slate-600 dark:text-slate-300">
             <div>
               <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Địa chỉ trụ sở chính:
+                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Địa chỉ văn phòng:
               </h3>
-              <p className="text-slate-500 dark:text-slate-400 mt-1 pl-3">
-                Số 33, đường Lý Chiêu Hoàng, phường Suối Hoa, thành phố Bắc Ninh, tỉnh Bắc Ninh, Việt Nam.
+              <p className="text-slate-500 dark:text-slate-400 mt-1 pl-3 font-medium">
+                Tầng 2, Tòa nhà Trung tâm thương mại Tùng Bách, Khu đô thị mới Quế Võ, thị xã Quế Võ, tỉnh Bắc Ninh, Việt Nam.
               </p>
             </div>
 
@@ -34,30 +34,18 @@ export default function ContactPage() {
               <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Mã số thuế:
               </h3>
-              <p className="text-slate-500 dark:text-slate-400 mt-1 pl-3">
+              <p className="text-slate-500 dark:text-slate-400 mt-1 pl-3 font-mono">
                 2300290374
               </p>
             </div>
 
             <div>
               <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Người đại diện:
+                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span> Địa chỉ Email:
               </h3>
               <p className="text-slate-500 dark:text-slate-400 mt-1 pl-3">
-                Giám đốc Nguyễn Thị Nhung
+                nhungtungbach@gmail.com
               </p>
-            </div>
-            
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 pt-2">
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white">Số điện thoại Hotline:</h3>
-                <a href="tel:0393005566" className="text-primary dark:text-accent font-bold hover:underline block mt-0.5">0393.00.55.66</a>
-              </div>
-              
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white">Địa chỉ Email:</h3>
-                <a href="mailto:nhungtungbach@gmail.com" className="text-slate-500 dark:text-slate-400 hover:underline block mt-0.5">nhungtungbach@gmail.com</a>
-              </div>
             </div>
             
             <div className="pt-2 border-t border-slate-100 dark:border-emerald-950">
@@ -70,9 +58,9 @@ export default function ContactPage() {
         
         {/* Support contact info */}
         <div className="bg-slate-50 dark:bg-emerald-950/10 p-8 rounded-3xl border border-slate-200/50 dark:border-emerald-900/30 shadow-inner space-y-6">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Hợp Tác & Tư Vấn</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Liên Hệ Thư Ký Ban Đại Diện</h2>
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            Quý đối tác có nhu cầu liên hệ hợp tác thi công hạ tầng, san lấp nền móng hoặc mua sỉ vật liệu xây dựng, xin vui lòng gửi thông tin yêu cầu ở form liên hệ trang chủ hoặc liên hệ trực tiếp qua Zalo số điện thoại đại diện công ty.
+            Quý đối tác, nhà cung cấp vật liệu hoặc khách hàng có nhu cầu trao đổi công việc, xin vui lòng kết nối trực tiếp với Thư ký của ban đại diện công ty qua kênh chat Zalo để được hỗ trợ nhanh chóng nhất.
           </p>
           <div className="space-y-3 pt-2">
             <a 
@@ -81,13 +69,13 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="inline-block w-full text-center py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-md transition-all hover:scale-105"
             >
-              Liên hệ Hotline qua Zalo
+              Kết nối Zalo Thư ký công ty
             </a>
             <a 
               href="/#register"
               className="inline-block w-full text-center py-3.5 rounded-full border border-primary text-primary dark:border-accent dark:text-accent font-semibold hover:bg-primary-light dark:hover:bg-emerald-950/30 transition-all hover:scale-105"
             >
-              Gửi yêu cầu qua Form liên hệ
+              Gửi tin nhắn qua Trang Chủ
             </a>
           </div>
         </div>

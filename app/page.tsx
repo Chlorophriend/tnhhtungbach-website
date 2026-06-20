@@ -68,13 +68,13 @@ export default function Home() {
         setFormStatus({ success: false, message: result.message || 'Có lỗi xảy ra, vui lòng thử lại.' });
       }
     } catch (error) {
-      console.log('API failed, falling back to Zalo redirect...', error);
+      console.log('API failed, redirecting to Zalo...', error);
       
       const message = `Chào Tùng Bách, tôi muốn liên hệ hợp tác / tư vấn dịch vụ. Thông tin:\n- Họ tên: ${formData.name}\n- SĐT: ${formData.phone}${formData.email ? `\n- Email: ${formData.email}` : ''}${formData.notes ? `\n- Nội dung yêu cầu: ${formData.notes}` : ''}`;
       
       setFormStatus({
         success: true,
-        message: 'Đang chuyển hướng sang Zalo để liên hệ trực tiếp...'
+        message: 'Đang kết nối Zalo hỗ trợ...'
       });
 
       setTimeout(() => {
@@ -92,19 +92,19 @@ export default function Home() {
   };
 
   const sectors = [
-    { title: "San lấp mặt bằng & Nền móng", icon: "🏗️", link: "/services" },
-    { title: "Xây dựng công trình kỹ thuật dân dụng", icon: "🛣️", link: "/services" },
-    { title: "Vận tải hàng hóa bằng đường bộ", icon: "🚛", link: "/services" },
-    { title: "Khai thác cát, sỏi, đá & đất sét", icon: "⛏️", link: "/services" },
-    { title: "Bán buôn nhiên liệu & VLXD", icon: "🧱", link: "/services" },
-    { title: "Đầu tư & Kinh doanh Bất động sản", icon: "🏢", link: "/services" }
+    { title: "San lấp mặt bằng & Nền móng", icon: "🏗️", bgImage: "/renders/sector_leveling.png" },
+    { title: "Xây dựng công trình kỹ thuật dân dụng", icon: "🛣️", bgImage: "/renders/sector_construction.png" },
+    { title: "Vận tải hàng hóa bằng đường bộ", icon: "🚛", bgImage: "/renders/sector_transport.png" },
+    { title: "Khai thác cát, sỏi, đá & đất sét", icon: "⛏️", bgImage: "/renders/sector_mining.png" },
+    { title: "Bán buôn nhiên liệu & VLXD", icon: "🧱", bgImage: "/renders/sector_materials.png" },
+    { title: "Đầu tư & Kinh doanh Bất động sản", icon: "🏢", bgImage: "/renders/sector_realestate.png" }
   ];
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-slate-50 dark:bg-emerald-950/20 text-slate-800 dark:text-slate-100">
       
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-primary via-emerald-900 to-slate-900 text-white py-24 md:py-36 overflow-hidden min-h-[550px] flex items-center">
+      <section className="relative bg-gradient-to-br from-primary via-emerald-900 to-slate-900 text-white py-24 md:py-36 overflow-hidden min-h-[580px] lg:min-h-[700px] flex items-center">
         
         {/* Abstract Curved Line SVG Waves behind the content */}
         <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-10">
@@ -129,7 +129,7 @@ export default function Home() {
                 <span className="text-accent">TÙNG BÁCH</span>
               </h1>
               <p className="text-lg md:text-xl text-slate-200 max-w-2xl font-light leading-relaxed text-justify md:text-left">
-                Kiến tạo hạ tầng vững bền và phát triển không gian sống chất lượng cao từ năm 2006. Chúng tôi khẳng định uy tín qua năng lực khai thác vật liệu, san lấp nền móng, vận tải logistics và các dự án đô thị, an sinh xã hội trọng điểm.
+                Kiến tạo hạ tầng vững bền và phát triển không gian sống chất lượng cao từ năm 2006. Chúng tôi khẳng định uy tín qua năng lực khai thác vật liệu, san lấp nền móng, vận tải logistics và các dự án đô thị, hạ tầng giao thông trọng điểm.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
@@ -148,16 +148,16 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Hero Right Content - 3D Staggered Slice Animation */}
-            <div className="md:col-span-5 flex items-center justify-center relative w-full h-[320px] md:h-[450px]">
+            {/* Hero Right Content - 3D Staggered Slice Animation (Bigger & Fuller) */}
+            <div className="md:col-span-5 flex items-center justify-center relative w-full h-[380px] sm:h-[480px] md:h-[580px] lg:h-[650px] overflow-visible">
               {/* Stacked Building Cutout - Blends directly into background (no container box, no borders, no labels) */}
-              <div className="relative w-full h-full max-w-[420px] aspect-[4/3] overflow-visible">
+              <div className="relative w-full h-full max-w-[500px] md:max-w-none aspect-[4/3] overflow-visible">
                 
                 {/* Slice 5 (Base / Ground floor) - Slides up */}
                 <div 
                   className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
-                    transform: animateIn ? 'translateY(0) scale(1)' : 'translateY(80px) scale(0.95)',
+                    transform: animateIn ? 'translateY(0) scale(1.15)' : 'translateY(80px) scale(1)',
                     opacity: animateIn ? 1 : 0,
                     transitionDelay: '0ms'
                   }}
@@ -175,7 +175,7 @@ export default function Home() {
                 <div 
                   className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
-                    transform: animateIn ? 'translateX(0) scale(1)' : 'translateX(100px) scale(0.95)',
+                    transform: animateIn ? 'translateX(0) scale(1.15)' : 'translateX(100px) scale(1)',
                     opacity: animateIn ? 1 : 0,
                     transitionDelay: '150ms'
                   }}
@@ -193,7 +193,7 @@ export default function Home() {
                 <div 
                   className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
-                    transform: animateIn ? 'translateX(0) scale(1)' : 'translateX(-100px) scale(0.95)',
+                    transform: animateIn ? 'translateX(0) scale(1.15)' : 'translateX(-100px) scale(1)',
                     opacity: animateIn ? 1 : 0,
                     transitionDelay: '300ms'
                   }}
@@ -211,7 +211,7 @@ export default function Home() {
                 <div 
                   className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
-                    transform: animateIn ? 'translateX(0) scale(1)' : 'translateX(100px) scale(0.95)',
+                    transform: animateIn ? 'translateX(0) scale(1.15)' : 'translateX(100px) scale(1)',
                     opacity: animateIn ? 1 : 0,
                     transitionDelay: '450ms'
                   }}
@@ -229,7 +229,7 @@ export default function Home() {
                 <div 
                   className="absolute inset-0 w-full h-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
-                    transform: animateIn ? 'translateY(0) scale(1)' : 'translateY(-60px) scale(0.95)',
+                    transform: animateIn ? 'translateY(0) scale(1.15)' : 'translateY(-60px) scale(1)',
                     opacity: animateIn ? 1 : 0,
                     transitionDelay: '600ms'
                   }}
@@ -270,31 +270,21 @@ export default function Home() {
                 Được thành lập từ ngày 31 tháng 08 năm 2006, <strong>Công ty TNHH Tùng Bách</strong> (Giấy CNKD số 2300290374) đã phát triển bền vững để trở thành một thương hiệu đáng tin cậy tại tỉnh Bắc Ninh và các tỉnh thành lân cận. Chúng tôi xây dựng hoạt động kinh doanh đa dạng dựa trên nền tảng cán bộ kỹ sư tâm huyết và có trình độ kỹ thuật vững chắc.
               </p>
               
-              <div className="grid sm:grid-cols-2 gap-6 pt-2 text-sm text-slate-600 dark:text-slate-300">
+              <div className="grid sm:grid-cols-1 gap-6 pt-2 text-sm text-slate-600 dark:text-slate-300">
                 <div className="space-y-3">
                   <div>
-                    <span className="font-bold text-slate-900 dark:text-white block">Tên giao dịch:</span>
-                    <span>TUNG BACH COMPANY LIMITED (TB COM LTD)</span>
+                    <span className="font-bold text-slate-900 dark:text-white block">Địa chỉ văn phòng:</span>
+                    <span className="font-medium">Tầng 2, Tòa nhà Trung tâm thương mại Tùng Bách, Khu đô thị mới Quế Võ, thị xã Quế Võ, tỉnh Bắc Ninh, Việt Nam.</span>
                   </div>
                   <div>
-                    <span className="font-bold text-slate-900 dark:text-white block">Người đại diện:</span>
-                    <span>Giám đốc Nguyễn Thị Nhung</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <span className="font-bold text-slate-900 dark:text-white block">Trụ sở chính:</span>
-                    <span>Số 33, Lý Chiêu Hoàng, phường Suối Hoa, TP. Bắc Ninh</span>
-                  </div>
-                  <div>
-                    <span className="font-bold text-slate-900 dark:text-white block">Cơ cấu cán bộ chuyên ngành:</span>
-                    <span>20 kỹ sư xây dựng/giao thông, 10 trung cấp kỹ thuật, 10 cử nhân kinh tế, 5 kỹ sư trắc địa.</span>
+                    <span className="font-bold text-slate-900 dark:text-white block">Mã số thuế / GPĐKKD:</span>
+                    <span>2300290374 (Đăng ký thay đổi lần thứ 7 ngày 17/03/2022 bởi Sở KH&ĐT tỉnh Bắc Ninh).</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Overview statistics block */}
+            {/* Overview strategic block */}
             <div className="lg:col-span-5 bg-slate-50 dark:bg-emerald-950/20 p-8 rounded-3xl border border-slate-100 dark:border-emerald-900/60 shadow-inner flex flex-col justify-center space-y-6">
               <h3 className="font-bold text-lg text-slate-950 dark:text-white mb-2">Định Hướng Chiến Lược</h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 font-light text-justify leading-relaxed">
@@ -317,7 +307,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTORS SECTION */}
+      {/* SECTORS SECTION (Image background grids, no links) */}
       <section id="sectors" className="py-20 bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-emerald-950/10 dark:to-slate-900 scroll-mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -333,22 +323,30 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {sectors.map((sector, idx) => (
-              <Link 
+              <div 
                 key={idx}
-                href={sector.link}
-                className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-emerald-900/40 shadow-sm hover:shadow-md hover:scale-102 transition-all flex flex-col justify-between"
+                className="relative h-64 rounded-2xl overflow-hidden group shadow-md flex flex-col justify-end p-6 border border-slate-200/20 dark:border-slate-800/40"
               >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary-light dark:bg-emerald-950 flex items-center justify-center text-primary dark:text-accent font-bold text-xl">
+                {/* Background Image */}
+                <Image
+                  src={sector.bgImage}
+                  alt={sector.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent z-10 pointer-events-none"></div>
+                
+                {/* Content */}
+                <div className="relative z-20 space-y-2 text-white pointer-events-none">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center text-lg shadow-sm">
                     {sector.icon}
                   </div>
-                  <h3 className="font-bold text-base text-slate-950 dark:text-white">{sector.title}</h3>
+                  <h3 className="font-bold text-base leading-snug">{sector.title}</h3>
                 </div>
-                <div className="pt-4 text-xs font-bold text-primary dark:text-accent flex items-center gap-1">
-                  Xem chi tiết
-                  <span>→</span>
-                </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -390,7 +388,7 @@ export default function Home() {
                       href="/nha-o-xa-hoi"
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all hover:scale-102 shadow"
                     >
-                      Xem chi tiết dự án & Thư viện ảnh công trường
+                      Xem chi tiết
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
@@ -481,7 +479,7 @@ export default function Home() {
                 <div className="w-16 h-1 bg-primary rounded-full"></div>
               </div>
               <p className="text-slate-600 dark:text-slate-300 font-light leading-relaxed text-justify">
-                Công ty TNHH Tùng Bách hoan nghênh mọi cơ hội hợp tác thi công hạ tầng kỹ thuật, liên kết cung ứng nguyên vật liệu xây dựng (xi măng, cát, đá, sỏi, thiết bị hoàn thiện) và nhu cầu tư vấn từ khách hàng. Hãy điền thông tin đăng ký để văn phòng ban đại diện liên hệ lại sớm nhất.
+                Công ty TNHH Tùng Bách hoan nghênh mọi cơ hội hợp tác thi công hạ tầng kỹ thuật, liên kết cung ứng nguyên vật liệu xây dựng (xi măng, cát, đá, sỏi, thiết bị hoàn thiện) và nhu cầu liên hệ từ khách hàng. Hãy điền thông tin đăng ký để văn phòng đại diện liên hệ lại sớm nhất.
               </p>
               
               <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
@@ -495,7 +493,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="w-6 h-6 rounded-full bg-primary-light dark:bg-emerald-900 text-primary dark:text-accent flex items-center justify-center font-bold text-xs">✓</span>
-                  <span>Liên hệ hỗ trợ thủ tục tư vấn hồ sơ dự án Nhà ở xã hội Quế Võ.</span>
+                  <span>Địa chỉ văn phòng giao dịch tại Tầng 2, Tòa nhà TTTM Tùng Bách.</span>
                 </div>
               </div>
             </div>
@@ -531,7 +529,7 @@ export default function Home() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-emerald-950 bg-white dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-                    placeholder="0393005566"
+                    placeholder="Số điện thoại của bạn"
                   />
                 </div>
 
@@ -559,7 +557,7 @@ export default function Home() {
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-emerald-950 bg-white dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-                    placeholder="Tôi muốn tìm hiểu chính sách cung ứng vật liệu hoặc hợp tác san lấp..."
+                    placeholder="Tôi muốn tìm hiểu chính sách hợp tác..."
                   ></textarea>
                 </div>
 
@@ -569,13 +567,23 @@ export default function Home() {
                   </div>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={formStatus.loading}
-                  className="w-full py-3.5 rounded-lg bg-primary hover:bg-primary-hover disabled:bg-slate-400 text-white font-bold text-center shadow-lg transition-transform hover:scale-102 active:scale-98 text-sm"
-                >
-                  {formStatus.loading ? 'Đang gửi thông tin...' : 'GỬI YÊU CẦU LIÊN HỆ'}
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                  <button
+                    type="submit"
+                    disabled={formStatus.loading}
+                    className="flex-grow py-3.5 rounded-lg bg-primary hover:bg-primary-hover disabled:bg-slate-400 text-white font-bold text-center shadow-lg transition-transform hover:scale-102 active:scale-98 text-sm cursor-pointer"
+                  >
+                    {formStatus.loading ? 'Đang gửi thông tin...' : 'GỬI YÊU CẦU LIÊN HỆ'}
+                  </button>
+                  <a
+                    href="https://zalo.me/0393005566"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-3.5 px-6 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-center shadow-lg transition-all hover:scale-102 active:scale-98 text-sm flex items-center justify-center gap-1.5"
+                  >
+                    <span>Chat Zalo Thư Ký</span>
+                  </a>
+                </div>
               </form>
             </div>
 
