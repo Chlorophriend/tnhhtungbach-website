@@ -11,6 +11,7 @@
 - [x] Phase 3: Legal Page Drafts (MoIT) (Completed 2026-06-17)
 
 ## Completed Tasks
+- [x] Tái cấu trúc website thành trang Tập đoàn Tùng Bách, di chuyển dự án NOXH sang trang con /nha-o-xa-hoi, nâng cấp trang Dịch vụ và Hero Section lơ lửng (2026-06-20)
 - [x] Initialized GEMINI.md and ZALO_REQUESTS.md (2026-06-11)
 - [x] Created LEGAL_CHECKLIST.md for domain transfer (2026-06-11)
 - [x] Setup local file-based database API (2026-06-17)

@@ -1,201 +1,117 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
 export default function ServicesPage() {
-  const [selectedLayout, setSelectedLayout] = useState<'A' | 'B'>('A');
-
-  const handleApartmentSelect = (layout: 'A' | 'B') => {
-    setSelectedLayout(layout);
-  };
+  const sectors = [
+    {
+      title: "San lấp mặt bằng & Thi công nền móng",
+      desc: "Đây là một trong những thế mạnh hàng đầu của Tùng Bách từ khi thành lập. Chúng tôi sở hữu đội xe cơ giới, máy xúc, máy ủi hiện đại cùng nguồn cát san lấp dồi dào, đảm bảo bàn giao mặt bằng thi công đúng tiến độ và đạt chuẩn cao độ kỹ thuật cho các dự án nhà xưởng, khu đô thị.",
+      icon: "🏗️"
+    },
+    {
+      title: "Xây dựng công trình kỹ thuật dân dụng",
+      desc: "Tùng Bách thực hiện tư vấn thiết kế và trực tiếp thi công các công trình giao thông đường bộ, hệ thống thủy lợi, công trình công nghiệp và các công trình điện đến 35kV. Đội ngũ kỹ sư giàu kinh nghiệm của chúng tôi luôn đảm bảo các tiêu chí kỹ thuật và độ bền công trình tối đa.",
+      icon: "🛣️"
+    },
+    {
+      title: "Vận tải hàng hóa bằng đường bộ",
+      desc: "Với đội ngũ xe tải trọng tải lớn và mạng lưới đối tác logistics rộng khắp, Tùng Bách cung cấp dịch vụ vận chuyển nguyên vật liệu xây dựng, đất đá san lấp, hàng hóa công nghiệp an toàn và chuyên nghiệp khắp các tỉnh thành Bắc Ninh, Bắc Giang, Quảng Ninh.",
+      icon: "🚛"
+    },
+    {
+      title: "Khai thác cát, sỏi, đá & đất sét",
+      desc: "Công ty trực tiếp đầu tư và khai thác tại các mỏ vật liệu xây dựng hợp pháp, cung cấp nguồn nguyên liệu chất lượng cao phục vụ các dự án hạ tầng của công ty cũng như phân phối sỉ/lẻ cho các công trình đối tác trong khu vực.",
+      icon: "⛏️"
+    },
+    {
+      title: "Bán buôn nhiên liệu & Vật liệu xây dựng",
+      desc: "Cung cấp chuỗi cung ứng vật liệu xây dựng hoàn chỉnh bao gồm xi măng, gạch xây, cát sỏi san lấp, đá ốp lát, sơn màu, véc-ni và thiết bị vệ sinh chính hãng. Hỗ trợ cung cấp nhiên liệu rắn, lỏng, khí phục vụ sản xuất công nghiệp và công trình.",
+      icon: "🧱"
+    },
+    {
+      title: "Kinh doanh & Đầu tư phát triển Bất động sản",
+      desc: "Tùng Bách là chủ đầu tư của nhiều dự án khu đô thị mới, trung tâm thương mại và dịch vụ tại Bắc Ninh và Bắc Giang. Chúng tôi cam kết mang lại các sản phẩm bất động sản minh bạch về pháp lý, đồng bộ về hạ tầng kỹ thuật và nâng cao chất lượng cuộc sống cho cộng đồng.",
+      icon: "🏢"
+    }
+  ];
 
   return (
-    <div className="flex-grow bg-slate-50 dark:bg-emerald-950/20 text-slate-800 dark:text-slate-100 min-h-screen py-12">
+    <div className="flex-grow bg-slate-50 dark:bg-emerald-950/20 text-slate-800 dark:text-slate-100 min-h-screen py-12 pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Navigation Breadcrumb */}
         <nav className="text-sm font-medium text-slate-500 dark:text-slate-400">
           <Link href="/" className="hover:text-primary dark:hover:text-accent transition-colors">Trang chủ</Link>
           <span className="mx-2">/</span>
-          <span className="text-slate-800 dark:text-white font-semibold">Dịch vụ</span>
+          <span className="text-slate-800 dark:text-white font-semibold">Lĩnh vực hoạt động</span>
         </nav>
 
         {/* Page Title */}
         <div className="space-y-4 text-center max-w-3xl mx-auto">
-          <span className="text-xs font-bold text-accent uppercase tracking-widest block">Dịch Vụ & Sản Phẩm</span>
+          <span className="text-xs font-bold text-accent uppercase tracking-widest block">Năng Lực & Dịch Vụ</span>
           <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white sm:text-5xl leading-tight">
-            Giải Pháp Bất Động Sản Toàn Diện
+            Lĩnh Vực Hoạt Động Cốt Lõi
           </h1>
           <div className="w-24 h-1.5 bg-primary dark:bg-accent mx-auto rounded-full"></div>
-          <p className="text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed pt-2">
-            Công ty TNHH Tùng Bách cung cấp hệ sinh thái dịch vụ khép kín từ tư vấn hồ sơ nhà ở xã hội, phân phối căn hộ mẫu và hỗ trợ thiết kế nội thất hoàn thiện.
+          <p className="text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed pt-2 text-justify md:text-center">
+            Công ty TNHH Tùng Bách phát triển hệ sinh thái đa dạng từ khai thác mỏ vật liệu, san lấp mặt bằng, vận tải đường bộ đến đầu tư thi công các dự án bất động sản lớn, tạo chuỗi giá trị khép kín vượt trội.
           </p>
         </div>
 
-        {/* Core Services Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-emerald-900/40 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-primary-light dark:bg-emerald-950 flex items-center justify-center text-primary dark:text-accent font-bold text-xl">
-              📝
+        {/* Detailed Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sectors.map((sector, index) => (
+            <div 
+              key={index} 
+              className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-emerald-900/40 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+            >
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-primary-light dark:bg-emerald-950 flex items-center justify-center text-primary dark:text-accent font-bold text-xl shadow-inner">
+                  {sector.icon}
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug">{sector.title}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
+                  {sector.desc}
+                </p>
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Tư Vấn Hồ Sơ NOXH</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
-              Hỗ trợ toàn bộ quy trình chuẩn bị hồ sơ pháp lý, chứng minh điều kiện cư trú và thu nhập theo đúng mẫu quy định của Sở Xây dựng Bắc Ninh, đảm bảo tỷ lệ xét duyệt tối đa.
-            </p>
-          </div>
+          ))}
+        </div>
 
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-emerald-900/40 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-accent-light dark:bg-amber-950/40 flex items-center justify-center text-accent font-bold text-xl">
-              🛋️
+        {/* Corporate Capacity Stats */}
+        <div className="bg-gradient-to-br from-primary via-emerald-900 to-slate-900 text-white p-8 md:p-12 rounded-3xl shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-accent/10 filter blur-3xl z-0"></div>
+          <div className="relative z-10 grid md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <div className="pt-4 md:pt-0">
+              <span className="block text-4xl font-extrabold text-accent">20+ Năm</span>
+              <span className="block text-xs text-slate-300 mt-1 uppercase tracking-wider">Kinh nghiệm hoạt động (từ 2006)</span>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Nội Thất & Thiết Kế</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
-              Kết hợp chặt chẽ cùng thương hiệu <strong className="font-semibold text-slate-900 dark:text-white">Nội thất Tùng Bách</strong> cung cấp các gói hoàn thiện căn hộ từ cơ bản đến cao cấp, tối ưu hóa không gian, vật liệu bền bỉ và ưu đãi đặc quyền.
-            </p>
-          </div>
-
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-emerald-900/40 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-primary-light dark:bg-emerald-950 flex items-center justify-center text-primary dark:text-accent font-bold text-xl">
-              🤝
+            <div className="pt-4 md:pt-0">
+              <span className="block text-4xl font-extrabold text-accent">45+ Nhân Sự</span>
+              <span className="block text-xs text-slate-300 mt-1 uppercase tracking-wider">Kỹ sư trắc địa, xây dựng & cử nhân kinh tế</span>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Môi Giới & Ký Gửi</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light text-justify">
-              Dịch vụ hỗ trợ chuyển nhượng hợp pháp, tư vấn cho thuê hoặc mua lại căn hộ với đầy đủ thủ tục pháp lý, bảo vệ quyền lợi tài chính lâu dài cho khách hàng.
-            </p>
+            <div className="pt-4 md:pt-0">
+              <span className="block text-4xl font-extrabold text-accent">5+ Dự Án</span>
+              <span className="block text-xs text-slate-300 mt-1 uppercase tracking-wider">Hạ tầng lớn đã hoàn thành bàn giao</span>
+            </div>
           </div>
         </div>
 
-        {/* Section Divider */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/20 via-accent/30 via-primary/20 to-transparent" />
-
-        {/* INTERACTIVE APARTMENT SELECTOR */}
-        <div className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Mặt Bằng Thiết Kế Căn Hộ</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 font-light">
-              Khám phá sơ đồ bố trí không gian mẫu căn hộ diện tích từ 61m² đến 71.3m² tại dự án Nhà ở xã hội Tùng Bách Quế Võ.
-            </p>
-          </div>
-
-          {/* Tab buttons */}
-          <div className="flex justify-center gap-4">
-            <button
-              onClick={() => handleApartmentSelect('A')}
-              className={`px-6 py-3 rounded-full font-bold text-sm shadow transition-all cursor-pointer ${
-                selectedLayout === 'A'
-                  ? 'bg-primary text-white scale-105'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
-              }`}
+        {/* Call to Action */}
+        <div className="text-center space-y-4 max-w-2xl mx-auto pt-4">
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Hợp Tác Phát Triển Cùng Tùng Bách</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 font-light leading-relaxed">
+            Chúng tôi luôn sẵn sàng hợp tác cùng các đối tác nhà thầu, đơn vị cung ứng vật tư và quý khách hàng quan tâm đến các sản phẩm dịch vụ xây dựng hạ tầng kỹ thuật của công ty.
+          </p>
+          <div className="pt-2">
+            <Link 
+              href="/contact" 
+              className="inline-block px-8 py-3 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-lg transition-transform hover:scale-105"
             >
-              Căn Hộ Mẫu A (61.0 m²)
-            </button>
-            <button
-              onClick={() => handleApartmentSelect('B')}
-              className={`px-6 py-3 rounded-full font-bold text-sm shadow transition-all cursor-pointer ${
-                selectedLayout === 'B'
-                  ? 'bg-primary text-white scale-105'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
-              }`}
-            >
-              Căn Hộ Mẫu B (71.3 m²)
-            </button>
-          </div>
-
-          {/* Interactive display */}
-          <div className="grid lg:grid-cols-12 gap-12 items-center bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-emerald-900/40 shadow-sm">
-            {/* Visual SVG blueprint */}
-            <div className="lg:col-span-7 bg-white dark:bg-slate-950 p-6 rounded-2xl border border-slate-200/50 dark:border-emerald-900 shadow-inner flex justify-center">
-              {selectedLayout === 'A' ? (
-                <svg className="w-full max-w-md h-72" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="10" y="10" width="380" height="230" rx="4" stroke="#064e3b" strokeWidth="3" fill="#ecfdf5" fillOpacity="0.3"/>
-                  <rect x="10" y="10" width="160" height="150" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="35" y="90" fill="#064e3b" fontSize="14" fontWeight="bold">PHÒNG KHÁCH</text>
-                  <text x="35" y="110" fill="#64748b" fontSize="10">Kèm khu Bếp + Ăn</text>
-                  <rect x="170" y="10" width="110" height="130" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="185" y="70" fill="#064e3b" fontSize="11" fontWeight="bold">PHÒNG NGỦ 1</text>
-                  <rect x="280" y="10" width="110" height="130" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="295" y="70" fill="#064e3b" fontSize="11" fontWeight="bold">PHÒNG NGỦ 2</text>
-                  <rect x="170" y="140" width="100" height="100" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="200" y="195" fill="#064e3b" fontSize="12" fontWeight="bold">WC</text>
-                  <rect x="10" y="160" width="160" height="80" stroke="#064e3b" strokeWidth="2" fill="#f8fafc"/>
-                  <text x="70" y="205" fill="#064e3b" fontSize="12" fontWeight="bold">LÔ GIA</text>
-                  <path d="M 285 240 L 285 200" stroke="#d97706" strokeWidth="3" markerEnd="url(#arrow)"/>
-                  <text x="295" y="225" fill="#d97706" fontSize="10" fontWeight="bold">LỐI VÀO</text>
-                </svg>
-              ) : (
-                <svg className="w-full max-w-md h-72" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="10" y="10" width="380" height="230" rx="4" stroke="#064e3b" strokeWidth="3" fill="#ecfdf5" fillOpacity="0.3"/>
-                  <rect x="10" y="10" width="180" height="130" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="45" y="70" fill="#064e3b" fontSize="14" fontWeight="bold">PHÒNG KHÁCH</text>
-                  <text x="45" y="90" fill="#64748b" fontSize="10">Rộng rãi thoáng đãng</text>
-                  <rect x="190" y="10" width="100" height="150" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="200" y="80" fill="#064e3b" fontSize="11" fontWeight="bold">PN MASTER</text>
-                  <rect x="190" y="120" width="50" height="40" stroke="#064e3b" strokeWidth="1" fill="#f8fafc"/>
-                  <text x="205" y="145" fill="#064e3b" fontSize="9" fontWeight="bold">WC 1</text>
-                  <rect x="290" y="10" width="100" height="150" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="310" y="80" fill="#064e3b" fontSize="11" fontWeight="bold">PHÒNG NGỦ 2</text>
-                  <rect x="290" y="160" width="100" height="80" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="325" y="205" fill="#064e3b" fontSize="12" fontWeight="bold">WC 2</text>
-                  <rect x="10" y="140" width="110" height="100" stroke="#064e3b" strokeWidth="2" fill="#fff"/>
-                  <text x="45" y="195" fill="#064e3b" fontSize="12" fontWeight="bold">BẾP</text>
-                  <rect x="120" y="140" width="70" height="100" stroke="#064e3b" strokeWidth="2" fill="#f8fafc"/>
-                  <text x="135" y="195" fill="#064e3b" fontSize="10" fontWeight="bold">LÔ GIA 1</text>
-                  <rect x="190" y="160" width="100" height="80" stroke="#064e3b" strokeWidth="2" fill="#f8fafc"/>
-                  <text x="210" y="205" fill="#064e3b" fontSize="10" fontWeight="bold">LÔ GIA 2</text>
-                </svg>
-              )}
-            </div>
-
-            {/* Layout specifications */}
-            <div className="lg:col-span-5 space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                  {selectedLayout === 'A' ? 'Mẫu A: Thiết kế tối giản, công năng' : 'Mẫu B: Tổ ấm lý tưởng cho gia đình'}
-                </h3>
-                <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm font-light text-justify">
-                  {selectedLayout === 'A' 
-                    ? 'Phù hợp cho các cặp vợ chồng trẻ hoặc người độc thân làm việc tại các khu công nghiệp.' 
-                    : 'Không gian mở rộng rãi với 2 lô gia thông thoáng, đáp ứng trọn vẹn nhu cầu sinh hoạt gia đình 2-3 thế hệ.'}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 border-y border-slate-200 dark:border-emerald-800 py-6">
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Diện tích tim tường</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    {selectedLayout === 'A' ? '61.0 m²' : '71.3 m²'}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Thiết kế căn hộ</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    2 PN | {selectedLayout === 'A' ? '1 WC' : '2 WC'}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Lô gia (Ban công)</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    {selectedLayout === 'A' ? '1 Lô gia' : '2 Lô gia'}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-xs text-slate-400 uppercase">Giá bán trung bình</span>
-                  <span className="text-lg font-bold text-primary dark:text-accent">
-                    {selectedLayout === 'A' ? '~854 Triệu VNĐ' : '~1.0 Tỷ VNĐ'}
-                  </span>
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <Link
-                  href="/contact"
-                  className="inline-block px-6 py-3 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow transition-all hover:scale-105"
-                >
-                  Đăng ký tham quan căn hộ mẫu
-                </Link>
-              </div>
-            </div>
+              Liên Hệ Hợp Tác Ngay
+            </Link>
           </div>
         </div>
 

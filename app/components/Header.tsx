@@ -101,7 +101,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 font-medium">
+          <nav className="hidden xl:flex items-center gap-6 font-medium">
             <a 
               href="#overview" 
               onClick={(e) => handleNavClick(e, 'overview')}
@@ -110,25 +110,31 @@ export default function Header() {
               Tổng quan
             </a>
             <a 
-              href="#highlights" 
-              onClick={(e) => handleNavClick(e, 'highlights')}
+              href="#sectors" 
+              onClick={(e) => handleNavClick(e, 'sectors')}
               className={navLinkClass}
             >
-              Tiện ích
+              Lĩnh vực
             </a>
+            <a 
+              href="#projects" 
+              onClick={(e) => handleNavClick(e, 'projects')}
+              className={navLinkClass}
+            >
+              Dự án
+            </a>
+            <Link 
+              href="/nha-o-xa-hoi" 
+              className={navLinkClass}
+            >
+              Dự án NOXH
+            </Link>
             <Link 
               href="/services" 
               className={navLinkClass}
             >
               Dịch vụ
             </Link>
-            <a 
-              href="#progress" 
-              onClick={(e) => handleNavClick(e, 'progress')}
-              className={navLinkClass}
-            >
-              Tiến độ
-            </a>
             <Link 
               href="/about" 
               className={navLinkClass}
@@ -239,12 +245,26 @@ export default function Header() {
             Tổng quan
           </a>
           <a
-            href="#highlights"
-            onClick={(e) => handleNavClick(e, 'highlights')}
+            href="#sectors"
+            onClick={(e) => handleNavClick(e, 'sectors')}
             className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
           >
-            Tiện ích
+            Lĩnh vực
           </a>
+          <a
+            href="#projects"
+            onClick={(e) => handleNavClick(e, 'projects')}
+            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
+          >
+            Dự án
+          </a>
+          <Link
+            href="/nha-o-xa-hoi"
+            onClick={() => setIsOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
+          >
+            Dự án NOXH
+          </Link>
           <Link
             href="/services"
             onClick={() => setIsOpen(false)}
@@ -252,13 +272,6 @@ export default function Header() {
           >
             Dịch vụ
           </Link>
-          <a
-            href="#progress"
-            onClick={(e) => handleNavClick(e, 'progress')}
-            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-emerald-900 hover:text-primary"
-          >
-            Tiến độ
-          </a>
           <Link
             href="/about"
             onClick={() => setIsOpen(false)}
